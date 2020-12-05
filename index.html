@@ -14,89 +14,104 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <a class="navbar-brand" href="#">UniTesters Client</a>
-    </nav>
+    <div class="page-container">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <a class="navbar-brand" href="#">UniTesters Client</a>
+        </nav>
 
-    <div class="container mt-2 main">
-
-        <div class="text-center">
-            <img id="icon" src="https://raw.githubusercontent.com/UniStudents/unistudents/master/src/assets/logo.svg"
-                alt="logo">
-        </div>
-
-        <form>
-            <fieldset>
-                <legend><b>Σύνδεση!</b></legend>
-                <div class="form-group">
-                    <label for="username">Όνομα Χρήστη</label>
-                    <input type="text" class="form-control" id="username">
-                </div>
-                <div class="form-group">
-                    <label for="password">Κωδικός Πρόσβασης</label>
-                    <input type="password" class="form-control" id="password">
-                </div>
-                <div class="form-group">
-                    <label for="universities">Ίδρυμα</label>
-                    <select class="form-control" id="universities">
-                        <option value="ASPETE">Α.Σ.ΠΑΙ.Τ.Ε.</option>
-                        <option value="AUA">Γεωπονικό Πανεπιστήμιο Αθηνών</option>
-                        <option value="IHU">Διεθνές Πανεπιστήμιο της Ελλάδος</option>
-                        <option value="UOA">Εθνικό Καποδιστριακό Πανεπιστήμιο</option>
-                        <option value="HMU">Ελληνικό Μεσογειακό Πανεπιστήμιο</option>
-                        <option value="IONIO">Ιόνιο Πανεπιστήμιο</option>
-                        <option value="AUEB">Οικονομικό Πανεπιστήμιο Αθηνών</option>
-                        <option value="AEGEAN">Πανεπιστήμιο Αιγαίου</option>
-                        <option value="UNIWA">Πανεπιστήμιο Δυτικής Αττικής</option>
-                        <option value="UOWM">Πανεπιστήμιο Δυτικής Μακεδονίας</option>
-                        <option value="UOI">Πανεπιστήμιο Ιωαννίνων</option>
-                        <option value="UOC">Πανεπιστήμιο Κρήτης</option>
-                        <option value="UPATRAS">Πανεπιστήμιο Πατρών</option>
-                        <option value="UNIPI">Πανεπιστήμιο Πειραιώς</option>
-                        <option value="UOP">Πανεπιστήμιο Πελοποννήσου</option>
-                        <option value="PANTEION">Πάντειο Πανεπιστήμιο</option>
-                        <option value="TUC">Πολυτεχνείο Κρήτης</option>
-                    </select>
-                </div>
+        <div class="wrapper">
+            <div class="container mt-2 main">
                 <div class="text-center">
-                    <button id="loginButton" type="submit" class="btn btn-primary">Είσοδος</button>
+                    <img id="icon"
+                        src="https://raw.githubusercontent.com/UniStudents/unistudents/master/src/assets/logo.svg"
+                        alt="logo">
                 </div>
-            </fieldset>
-        </form>
-    </div>
 
-    <div class="messages">
-        <div id="success" class="alert alert-success mt-3">
-            <div class="text-center">
-                <strong>Επιτυχής Σύνδεση!</strong>
+                <form>
+                    <fieldset>
+                        <legend><b>Σύνδεση!</b></legend>
+                        <div class="form-group">
+                            <label for="username">Όνομα Χρήστη</label>
+                            <input type="text" class="form-control" id="username">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Κωδικός Πρόσβασης</label>
+                            <input type="password" class="form-control" id="password">
+                        </div>
+                        <div class="form-group">
+                            <label for="universities">Ίδρυμα</label>
+                            <select class="form-control" id="universities">
+                                <option value="ASPETE">Α.Σ.ΠΑΙ.Τ.Ε.</option>
+                                <option value="AUA">Γεωπονικό Πανεπιστήμιο Αθηνών</option>
+                                <option value="IHU">Διεθνές Πανεπιστήμιο της Ελλάδος</option>
+                                <option value="UOA">Εθνικό Καποδιστριακό Πανεπιστήμιο</option>
+                                <option value="NTUA">Εθνικό Μετσόβειο Πολυτεχνείο</option>
+                                <option value="HMU">Ελληνικό Μεσογειακό Πανεπιστήμιο</option>
+                                <option value="IONIO">Ιόνιο Πανεπιστήμιο</option>
+                                <option value="AUEB">Οικονομικό Πανεπιστήμιο Αθηνών</option>
+                                <option value="AEGEAN">Πανεπιστήμιο Αιγαίου</option>
+                                <option value="UNIWA">Πανεπιστήμιο Δυτικής Αττικής</option>
+                                <option value="UOWM">Πανεπιστήμιο Δυτικής Μακεδονίας</option>
+                                <option value="UOI">Πανεπιστήμιο Ιωαννίνων</option>
+                                <option value="UOC">Πανεπιστήμιο Κρήτης</option>
+                                <option value="UPATRAS">Πανεπιστήμιο Πατρών</option>
+                                <option value="UNIPI">Πανεπιστήμιο Πειραιώς</option>
+                                <option value="UOP">Πανεπιστήμιο Πελοποννήσου</option>
+                                <option value="PANTEION">Πάντειο Πανεπιστήμιο</option>
+                                <option value="TUC">Πολυτεχνείο Κρήτης</option>
+                                <option value="HUA">Χαροκόπειο Πανεπιστήμιο</option>
+                            </select>
+                        </div>
+                        <div class="text-center">
+                            <button id="loginButton" type="submit" class="btn btn-primary">Είσοδος</button>
+                        </div>
+                    </fieldset>
+                </form>
             </div>
-        </div>
-        <div id="wrong-cr" class="alert alert-danger mt-3">
-            <div class="text-center">
-                <strong>Λανθασμένα στοιχεία πρόσβασης!</strong>
+
+            <div class="cards">
+                <div id="info" class="card border-light">
+                    <div class="card-header"><b>ΣΤΟΙΧΕΙΑ ΦΟΙΤΗΤΗ</b></div>
+                    <div class="card-body">
+                    </div>
+                </div>
+
+                <div id="grades" class="card border-light">
+                    <div class="card-header"><b>ΒΑΘΜΟΛΟΓΙΕΣ</b></div>
+                    <div class="card-body">
+                    </div>
+                </div>
             </div>
-        </div>
-        <div id="system-down" class="alert alert-info mt-3">
-            <div class="text-center">
-                <strong>Το σύστημα της σχολής σου δεν ανταποκρίνεται!</strong>
-            </div>
-        </div>
-        <div id="problem" class="alert alert-warning mt-3">
-            <div class="text-center">
-                <strong>Κάτι πήγε λάθος. Δοκίμασε ξανά αργότερα.</strong>
+
+            <div class="messages">
+                <div id="wrong-cr" class="alert alert-danger mt-3">
+                    <div class="text-center">
+                        <strong>Λανθασμένα στοιχεία πρόσβασης!</strong>
+                    </div>
+                </div>
+                <div id="system-down" class="alert alert-info mt-3">
+                    <div class="text-center">
+                        <strong>Το σύστημα της σχολής σου δεν ανταποκρίνεται!</strong>
+                    </div>
+                </div>
+                <div id="problem" class="alert alert-warning mt-3">
+                    <div class="text-center">
+                        <strong>Κάτι πήγε λάθος. Δοκίμασε ξανά αργότερα.</strong>
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <a href="index.html" class="btn btn-primary">Πίσω</a>
+                </div>
             </div>
         </div>
 
-        <div class="text-center">
-            <a href="index.html" class="btn btn-primary">Πίσω</a>
-        </div>
-    </div>
-
-    <div id="disclaimer" class="text-center">
-        <hr>
-        <small>Η υπηρεσία με κανένα τρόπο δεν διαχειρίζεται ή έχει πρόσβαση στα στοιχεία σου.
-            Χρησιμοποιούνται καθαρά για τη σύνδεση σου στο επίσημο σύστημα βαθμολογιών στα πλαίσια της δοκιμαστικής
-            έκδοσης της.</small>
+        <footer id="disclaimer" class="text-center">
+            <hr>
+            <small>Η υπηρεσία με κανένα τρόπο δεν διαχειρίζεται ή έχει πρόσβαση στα στοιχεία σου.
+                Χρησιμοποιούνται καθαρά για τη σύνδεση σου στο επίσημο σύστημα βαθμολογιών στα πλαίσια της δοκιμαστικής
+                έκδοσης της.</small>
+        </footer>
     </div>
 </body>
 <script src="js/main.js"></script>
