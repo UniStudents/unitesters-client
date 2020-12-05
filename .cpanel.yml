@@ -1,0 +1,5 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/techtone/cb.unistudents.gr/
+    - /bin/cp index.html $DEPLOYPATH
