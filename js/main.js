@@ -25,7 +25,6 @@ loginButton.addEventListener('click', (event) => {
     const username = document.querySelector('#username').value;
     const password = document.querySelector('#password').value;
     const cookies = JSON.parse(localStorage.getItem("cookies"));
-
     fetch(`${BASE_URL}${university}`, {
         method: "POST",
         body: JSON.stringify({
@@ -61,7 +60,6 @@ loginButton.addEventListener('click', (event) => {
                 localStorage.setItem("cookies", JSON.stringify(data.cookies));
                 const info = data.student.info;
                 const grades = data.student.grades;
-
                 infoCardBody.innerHTML = `
                 <p><b>Α.Μ:</b> ${info.aem}</p>
                 <p><b>Ονοματεπώνυμο:</b> ${info.lastName} ${info.firstName}</p>
@@ -69,7 +67,6 @@ loginButton.addEventListener('click', (event) => {
                 <p><b>Εξάμηνο:</b> ${info.semester}</p>
                 <p><b>Πρόγραμμα Σπουδών:</b> ${info.registrationYear}</p>
                 `
-
                 gradesCardBody.innerHTML = `
                 <p><b>Μ.Ο (Σύνολο):</b> ${grades.totalAverageGrade}</p>
                 <p><b>Περασμένα (Σύνολο):</b> ${grades.totalPassedCourses}</p>
@@ -87,7 +84,6 @@ loginButton.addEventListener('click', (event) => {
                     <p><b>ECTS:</b> ${semester.ects}</p>
                     <p><i>Λίστα Μαθημάτων</i></p>
                     `
-
                     for (let j = 0; j < semester.courses.length; j++) {
                         const course = semester.courses[j];
                         gradesCardBody.innerHTML += `
@@ -99,6 +95,5 @@ loginButton.addEventListener('click', (event) => {
                     }
                 }
             }
-
         })
 })
