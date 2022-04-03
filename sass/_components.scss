@@ -1,0 +1,41 @@
+// Container
+.container {
+  max-width: 95%;
+}
+
+// Button
+.btn {
+  font-size: 1.6rem;
+  font-weight: 500;
+  padding: 0.8em 1.6em;
+  border: none;
+  border-radius: var(--border-radius-main);
+  background-color: var(--ion-color-primary);
+  color: var(--ion-color-light);
+}
+
+// Loading spinner
+.loading-animation {
+  margin-top: 50px;
+  text-align: center;
+}
+
+.loader {
+  margin: auto;
+  border: 16px solid #f3f3f3;
+  border-top: 16px solid #6c62ff;
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 2s cubic-bezier(0.77, -0.2, 0.18, 1) infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
