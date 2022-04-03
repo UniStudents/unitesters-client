@@ -1,126 +1,139 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Roboto Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Favicon -->
+    <link rel="icon" href="images/favicon.png" sizes="32x32" />
+    <link rel="icon" href="images/logo.svg" sizes="192x192" />
+    <!-- Ionic Framework -->
+    <script
+      type="module"
+      src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"
+    ></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css"
+      rel="stylesheet"
+    />
+    <!-- Chart JS -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+    <!-- CSS -->
+    <link rel="stylesheet" href="sass/main.css" />
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="icon" href="https://unistudents.gr/wp-content/uploads/2020/09/cropped-cropped-logo-300x300-1-32x32.png"
-        sizes="32x32" />
-    <link rel="icon" href="https://unistudents.gr/wp-content/uploads/2020/09/cropped-cropped-logo-300x300-1-192x192.png"
-        sizes="192x192" />
     <title>UniTesters Client</title>
-</head>
+  </head>
 
-<body>
-    <div class="page-container">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-            <a class="navbar-brand" href="#">UniTesters Client</a>
-        </nav>
+  <body>
+    <header class="header">
+      <div class="brand-container">
+        <img src="images/logo.svg " class="brand-container__logo" />
+        <p class="brand-container__name">UniStudents</p>
+      </div>
+    </header>
 
-        <div class="wrapper">
-            <div class="container mt-2 main">
-                <div class="text-center">
-                    <img id="icon"
-                        src="https://raw.githubusercontent.com/UniStudents/unistudents/master/src/assets/logo.svg"
-                        alt="logo">
-                </div>
-
-                <form>
-                    <fieldset>
-                        <legend><b>Σύνδεση</b></legend>
-                        <div class="form-group">
-                            <label for="username">Όνομα Χρήστη</label>
-                            <input type="text" class="form-control" id="username">
-                        </div>
-                        <div class="form-group">
-                            <label for="password">Κωδικός Πρόσβασης</label>
-                            <input type="password" class="form-control" id="password">
-                        </div>
-                        <div class="form-group">
-                            <label for="universities">Ίδρυμα</label>
-                            <select class="form-control" id="universities">
-                                <option value="ASPETE">Α.Σ.ΠΑΙ.Τ.Ε.</option>
-                                <option value="AUTH">Αριστοτέλειο Πανεπιστήμιο Θεσσαλονίκης</option>
-                                <option value="AUA">Γεωπονικό Πανεπιστήμιο Αθηνών</option>
-                                <option value="IHU">Διεθνές Πανεπιστήμιο της Ελλάδος</option>
-                                <option value="UOA">Εθνικό Καποδιστριακό Πανεπιστήμιο</option>
-                                <option value="NTUA">Εθνικό Μετσόβειο Πολυτεχνείο</option>
-                                <option value="HMU">Ελληνικό Μεσογειακό Πανεπιστήμιο</option>
-                                <option value="IONIO">Ιόνιο Πανεπιστήμιο</option>
-                                <option value="AUEB">Οικονομικό Πανεπιστήμιο Αθηνών</option>
-                                <option value="AEGEAN">Πανεπιστήμιο Αιγαίου</option>
-                                <option value="UNIWA">Πανεπιστήμιο Δυτικής Αττικής</option>
-                                <option value="UOWM">Πανεπιστήμιο Δυτικής Μακεδονίας</option>
-                                <option value="UOI">Πανεπιστήμιο Ιωαννίνων</option>
-                                <option value="UOC">Πανεπιστήμιο Κρήτης</option>
-                                <option value="UPATRAS">Πανεπιστήμιο Πατρών</option>
-                                <option value="UNIPI">Πανεπιστήμιο Πειραιώς</option>
-                                <option value="UOP">Πανεπιστήμιο Πελοποννήσου</option>
-                                <option value="PANTEION">Πάντειο Πανεπιστήμιο</option>
-                                <option value="TUC">Πολυτεχνείο Κρήτης</option>
-                                <option value="HUA">Χαροκόπειο Πανεπιστήμιο</option>
-                            </select>
-                        </div>
-                        <div class="text-center">
-                            <button id="loginButton" type="submit" class="btn btn-primary">Είσοδος</button>
-                        </div>
-                    </fieldset>
-                </form>
-
-                <div class="loading-animation">
-                    <div class="loader"></div>
-                    <br>
-                    <p>Συγχρονισμός...</p>
-                </div>
-            </div>
-
-            <div class="cards">
-                <div id="info" class="card border-light">
-                    <div class="card-header"><b>ΣΤΟΙΧΕΙΑ ΦΟΙΤΗΤΗ</b></div>
-                    <div class="card-body">
-                    </div>
-                </div>
-
-                <div id="grades" class="card border-light">
-                    <div class="card-header"><b>ΒΑΘΜΟΛΟΓΙΕΣ</b></div>
-                    <div class="card-body">
-                    </div>
-                </div>
-            </div>
-
-            <div class="messages">
-                <div id="wrong-cr" class="alert alert-danger mt-3">
-                    <div class="text-center">
-                        <strong>Λανθασμένα στοιχεία πρόσβασης!</strong>
-                    </div>
-                </div>
-                <div id="system-down" class="alert alert-info mt-3">
-                    <div class="text-center">
-                        <strong>Το σύστημα της σχολής σου δεν ανταποκρίνεται!</strong>
-                    </div>
-                </div>
-                <div id="problem" class="alert alert-warning mt-3">
-                    <div class="text-center">
-                        <strong>Κάτι πήγε λάθος. Δοκίμασε ξανά αργότερα.</strong>
-                    </div>
-                </div>
-
-                <div class="text-center">
-                    <a href="index.html" class="btn btn-primary">Πίσω</a>
-                </div>
-            </div>
+    <section class="form-section container">
+      <form class="form form--login">
+        <legend class="form__legend">Σύνδεση</legend>
+        <div class="form-group">
+          <label for="username" class="form-group__label">Όνομα Χρήστη</label>
+          <input type="text" class="form-group__input" id="username" />
         </div>
+        <div class="form-group">
+          <label for="password" class="form-group__label"
+            >Κωδικός Πρόσβασης</label
+          >
+          <input type="password" class="form-group__input" id="password" />
+        </div>
+        <div class="form-group">
+          <label for="universities" class="form-group__label">Ίδρυμα</label>
+          <select class="form-group__input" id="universities">
+            <option value="ASPETE">Α.Σ.ΠΑΙ.Τ.Ε.</option>
+            <option value="AUTH">Αριστοτέλειο Πανεπιστήμιο Θεσσαλονίκης</option>
+            <option value="AUA">Γεωπονικό Πανεπιστήμιο Αθηνών</option>
+            <option value="IHU">Διεθνές Πανεπιστήμιο της Ελλάδος</option>
+            <option value="UOA">Εθνικό Καποδιστριακό Πανεπιστήμιο</option>
+            <option value="NTUA">Εθνικό Μετσόβειο Πολυτεχνείο</option>
+            <option value="HMU">Ελληνικό Μεσογειακό Πανεπιστήμιο</option>
+            <option value="IONIO">Ιόνιο Πανεπιστήμιο</option>
+            <option value="AUEB">Οικονομικό Πανεπιστήμιο Αθηνών</option>
+            <option value="AEGEAN">Πανεπιστήμιο Αιγαίου</option>
+            <option value="UNIWA">Πανεπιστήμιο Δυτικής Αττικής</option>
+            <option value="UOWM">Πανεπιστήμιο Δυτικής Μακεδονίας</option>
+            <option value="UOI">Πανεπιστήμιο Ιωαννίνων</option>
+            <option value="UOC">Πανεπιστήμιο Κρήτης</option>
+            <option value="UPATRAS">Πανεπιστήμιο Πατρών</option>
+            <option value="UNIPI">Πανεπιστήμιο Πειραιώς</option>
+            <option value="UOP">Πανεπιστήμιο Πελοποννήσου</option>
+            <option value="PANTEION">Πάντειο Πανεπιστήμιο</option>
+            <option value="TUC">Πολυτεχνείο Κρήτης</option>
+            <option value="HUA">Χαροκόπειο Πανεπιστήμιο</option>
+          </select>
+        </div>
+        <button id="loginButton" type="submit" class="btn btn-primary">
+          Είσοδος
+        </button>
+      </form>
+    </section>
 
-        <footer id="disclaimer" class="text-center">
-            <hr>
-            <small>Η υπηρεσία με κανένα τρόπο δεν διαχειρίζεται ή έχει πρόσβαση στα στοιχεία σου.
-                Χρησιμοποιούνται καθαρά για τη σύνδεση σου στο επίσημο σύστημα βαθμολογιών στα πλαίσια της δοκιμαστικής
-                έκδοσης της.</small>
-        </footer>
+    <div class="loading-animation">
+      <div class="loader"></div>
+      <br />
+      <p>Συγχρονισμός...</p>
     </div>
-</body>
-<script src="js/main.js"></script>
 
+    <div class="cards">
+      <div id="info" class="card border-light">
+        <div class="card-header"><b>ΣΤΟΙΧΕΙΑ ΦΟΙΤΗΤΗ</b></div>
+        <div class="card-body"></div>
+      </div>
+
+      <div id="grades" class="card border-light">
+        <div class="card-header"><b>ΒΑΘΜΟΛΟΓΙΕΣ</b></div>
+        <div class="card-body"></div>
+      </div>
+    </div>
+
+    <div class="messages">
+      <div id="wrong-cr" class="alert alert-danger mt-3">
+        <div class="text-center">
+          <strong>Λανθασμένα στοιχεία πρόσβασης!</strong>
+        </div>
+      </div>
+      <div id="system-down" class="alert alert-info mt-3">
+        <div class="text-center">
+          <strong>Το σύστημα της σχολής σου δεν ανταποκρίνεται!</strong>
+        </div>
+      </div>
+      <div id="problem" class="alert alert-warning mt-3">
+        <div class="text-center">
+          <strong>Κάτι πήγε λάθος. Δοκίμασε ξανά αργότερα.</strong>
+        </div>
+      </div>
+
+      <div class="text-center">
+        <a href="index.html" class="btn btn-primary">Πίσω</a>
+      </div>
+    </div>
+
+    <footer id="disclaimer" class="text-center">
+      <hr />
+      <small
+        >Η υπηρεσία με κανένα τρόπο δεν διαχειρίζεται ή έχει πρόσβαση στα
+        στοιχεία σου. Χρησιμοποιούνται καθαρά για τη σύνδεση σου στο επίσημο
+        σύστημα βαθμολογιών στα πλαίσια της δοκιμαστικής έκδοσης της.</small
+      >
+    </footer>
+  </body>
+  <script src="js/main.js"></script>
 </html>
