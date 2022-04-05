@@ -18,28 +18,96 @@
   outline: 4px solid rgba(175, 175, 175, 0.5);
 }
 
+// Courses grades
+.grades-container {
+  background-color: #eff3fd;
+  padding: 6.4rem 1.2rem;
+}
+
+.semester {
+  font-size: 1.7rem;
+  margin-bottom: 1.2rem;
+}
+
+.courses:not(:last-child) {
+  margin-bottom: 3.2rem;
+  list-style: none;
+}
+
+.course {
+  background-color: #fff;
+  padding: 1.2rem 1rem;
+  box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.2);
+  border-radius: var(--border-radius-main);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.course:not(:last-child) {
+  margin-bottom: 2.4rem;
+}
+
+.course-info {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.course-info__code {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #777;
+}
+
+.course-info__name {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.course-info__type {
+  font-size: 1.2rem;
+  font-weight: 500;
+
+  color: #777;
+}
+
+.course-grade {
+  padding-left: 0.6rem;
+  color: var(--ion-color-primary);
+  font-size: 3rem;
+  font-weight: 500;
+}
+
 // Loading spinner
 .loading-animation {
-  margin-top: 50px;
   text-align: center;
+  margin-top: 2.4rem;
+
+  p {
+    color: var(--ion-color-dark-shade);
+    font-size: 1.4rem;
+  }
 }
 
 .loader {
-  margin: auto;
-  border: 16px solid #f3f3f3;
-  border-top: 16px solid #6c62ff;
+  display: inline-block;
+  width: 4rem;
+  height: 4rem;
+  border: 5px solid #c6b4ff;
   border-radius: 50%;
-  width: 120px;
-  height: 120px;
-  animation: spin 2s cubic-bezier(0.77, -0.2, 0.18, 1) infinite;
+  border-top-color: var(--ion-color-tertiary);
+  animation: spin 1.2s ease-in-out infinite;
+  -webkit-animation: spin 1.2s ease-in-out infinite;
 }
 
 @keyframes spin {
-  0% {
-    transform: rotate(0deg);
+  to {
+    -webkit-transform: rotate(360deg);
   }
-
-  100% {
-    transform: rotate(360deg);
+}
+@-webkit-keyframes spin {
+  to {
+    -webkit-transform: rotate(360deg);
   }
 }
