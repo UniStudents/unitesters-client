@@ -83,6 +83,11 @@
         <button id="loginButton" type="submit" class="btn btn-primary">
           Είσοδος
         </button>
+        <p class="form__disclaimer">
+          * Η υπηρεσία με κανένα τρόπο δεν διαχειρίζεται ή έχει πρόσβαση στα
+          στοιχεία σου. Χρησιμοποιούνται καθαρά για τη σύνδεση σου στο επίσημο
+          σύστημα βαθμολογιών στα πλαίσια της δοκιμαστικής έκδοσης της.
+        </p>
       </form>
     </section>
 
@@ -126,13 +131,70 @@
       </div>
     </div>
 
-    <footer id="disclaimer" class="text-center">
-      <hr />
-      <small
-        >Η υπηρεσία με κανένα τρόπο δεν διαχειρίζεται ή έχει πρόσβαση στα
-        στοιχεία σου. Χρησιμοποιούνται καθαρά για τη σύνδεση σου στο επίσημο
-        σύστημα βαθμολογιών στα πλαίσια της δοκιμαστικής έκδοσης της.</small
+    <footer id="disclaimer" class="footer">
+      <div class="brand-container">
+        <img src="images/logo.svg " class="brand-container__logo" />
+        <p class="brand-container__name">UniStudents</p>
+      </div>
+
+      <a
+        class="footer-cta"
+        target="_blank"
+        href="https://apps.apple.com/us/app/id1523994357"
       >
+        <img
+          class="footer-cta__img"
+          src="images/app-store.svg"
+          alt="download on the app store"
+        />
+      </a>
+      <a
+        class="footer-cta"
+        target="_blank"
+        href="https://play.google.com/store/apps/details?id=com.unipi.students"
+      >
+        <img
+          class="footer-cta__img"
+          src="images/google-play.svg"
+          alt="get it on google play"
+        />
+      </a>
+
+      <div class="socials">
+        <p class="socials__heading">Βρες μας στα Social</p>
+        <div class="socials-container">
+          <a href="https://www.facebook.com/unistudentsapp/" target="_blank"
+            ><ion-icon
+              class="socials-container__logo"
+              slot="end"
+              name="logo-facebook"
+            ></ion-icon
+          ></a>
+          <a href="https://www.instagram.com/unistudentsapp/" target="_blank"
+            ><ion-icon
+              class="socials-container__logo"
+              slot="end"
+              name="logo-instagram"
+            ></ion-icon
+          ></a>
+          <a href="https://discord.gg/xA4Uy7tZmZ" target="_blank"
+            ><ion-icon
+              class="socials-container__logo"
+              slot="end"
+              name="logo-discord"
+            ></ion-icon
+          ></a>
+          <a
+            href="https://www.linkedin.com/company/unistudentsapp"
+            target="_blank"
+            ><ion-icon
+              class="socials-container__logo"
+              slot="end"
+              name="logo-linkedin"
+            ></ion-icon
+          ></a>
+        </div>
+      </div>
     </footer>
   </body>
   <script src="js/main.js"></script>
