@@ -7,11 +7,14 @@ const problem = document.querySelector("#problem");
 const form = document.querySelector(".form-section");
 const disclamer = document.querySelector(".form__disclaimer");
 const infoCardBody = document.querySelector("#info > .card-body");
+const profileSection = document.querySelector(".student-profile");
 const gradesSection = document.querySelector(".student-grades");
+const studentWelcome = document.querySelector(".student-heading");
+const studentScores = document.querySelector(".student-scores");
 const gradesContainer = document.querySelector(".grades-container");
 const loader = document.querySelector(".loading-animation");
-const coursesChart = document.getElementById("coursesChart").getContext("2d");
-const gradesChart = document.getElementById("gradesChart").getContext("2d");
+const doughnutChart = document.getElementById("doughnutChart").getContext("2d");
+const lineChart = document.getElementById("lineChart").getContext("2d");
 let student;
 
 messages.style.display = "none";
@@ -65,54 +68,237 @@ loginButton.addEventListener("click", (event) => {
         localStorage.setItem("cookies", JSON.stringify(data.cookies));
         console.log(data);
         student = data.student;
-        const info = data.student.info;
-        const grades = data.student.grades;
-        /*
-        infoCardBody.innerHTML = `
-                <p><b>Α.Μ:</b> ${info.aem}</p>
-                <p><b>Ονοματεπώνυμο:</b> ${info.lastName} ${info.firstName}</p>
-                <p><b>Τμήμα:</b> ${info.department}</p>
-                <p><b>Εξάμηνο:</b> ${info.semester}</p>
-                <p><b>Πρόγραμμα Σπουδών:</b> ${info.registrationYear}</p>
-                `;
-        gradesCardBody.innerHTML = `
-                <p><b>Μ.Ο (Σύνολο):</b> ${grades.totalAverageGrade}</p>
-                <p><b>Περασμένα (Σύνολο):</b> ${grades.totalPassedCourses}</p>
-                <p><b>ECTS (Σύνολο):</b> ${grades.totalEcts}</p>
-                `;
-        */
-        for (let i = 0; i < grades.semesters.length; i++) {
-          let html = "";
-          const semester = grades.semesters[i];
-          html += `
-                <h3 class="semester">Εξάμηνο ${semester.id}</h3>
-                <ul class="courses">
-            `;
-          for (let j = 0; j < semester.courses.length; j++) {
-            const course = semester.courses[j];
-            html += `
-                <li class="course">
-                    <div class="course-info">
-                    <p class="course-info__code">${course.id}</p>
-                    <p class="course-info__name">
-                    ${course.name}
-                    </p>
-                    <p class="course-info__type">${
-                      course.type === "" || course.examPeriod === "-"
-                        ? "-"
-                        : `${course.type} | ${course.examPeriod}`
-                    }</p>
-                    </div>
-                    <p class="course-grade">${course.grade}</p>
-                </li>
-                `;
-          }
-          html += `
-                </ul>
-            `;
-          gradesContainer.innerHTML += html;
-          gradesSection.style.display = "";
-        }
+        getStudentProfile();
+        getLineChart();
       }
     });
 });
+
+function getStudentGrades() {
+  const grades = student.grades;
+  for (let i = 0; i < grades.semesters.length; i++) {
+    let html = "";
+    const semester = grades.semesters[i];
+    html += `
+            <h3 class="semester">Εξάμηνο ${semester.id}</h3>
+            <ul class="courses">
+        `;
+    for (let j = 0; j < semester.courses.length; j++) {
+      const course = semester.courses[j];
+      html += `
+            <li class="course">
+                <div class="course-info">
+                <p class="course-info__code">${course.id}</p>
+                <p class="course-info__name">
+                ${course.name}
+                </p>
+                <p class="course-info__type">${
+                  course.type === "" || course.examPeriod === "-"
+                    ? "-"
+                    : `${course.type} | ${course.examPeriod}`
+                }</p>
+                </div>
+                <p class="course-grade">${course.grade}</p>
+            </li>
+            `;
+    }
+    html += `
+            </ul>
+        `;
+    gradesContainer.innerHTML += html;
+    gradesSection.style.display = "";
+  }
+}
+
+function getStudentProfile() {
+  profileSection.style.display = "block";
+  const info = student.info;
+  const grades = student.grades;
+  console.log(info, grades);
+  console.log(studentWelcome);
+  studentWelcome.innerHTML += `
+        <span class="student-heading__message">Συνδέθηκες ως</span>
+        <span class="student-heading__name">${info.firstName} ${info.lastName}</span>
+    `;
+  console.log(studentScores);
+  studentScores.innerHTML += `
+        <div class="student-scores">
+            <div class="student-score">
+            <p class="student-score__number">${grades.totalPassedCourses}</p>
+            <p class="student-score__description">Περασμένα Μαθήματα</p>
+            </div>
+            <div class="student-score">
+            <p class="student-score__number">${grades.totalAverageGrade}</p>
+            <p class="student-score__description">Μέσος Όρος</p>
+            </div>
+            <div class="student-score">
+            <p class="student-score__number">${grades.totalEcts}</p>
+            <p class="student-score__description">ECTS</p>
+            </div>
+        </div>
+    `;
+  getDoughnutChart();
+  getStudentGrades();
+}
+
+function getDoughnutChart() {
+  const dataset = [0, 0, 0];
+  dataset[0] = Number(student.grades.totalPassedCourses);
+
+  for (const semester of student.grades.semesters) {
+    for (const course of semester.courses) {
+      if (course.grade === "") {
+        continue;
+      }
+      if (course.grade === "-") {
+        dataset[2]++;
+      } else if (Number(course.grade) < 5) {
+        dataset[1]++;
+      }
+    }
+  }
+
+  return new Chart(doughnutChart, {
+    type: "doughnut",
+    data: {
+      labels: ["Πέρασες", "Κόπηκες", "Δεν έχεις δώσει"],
+      datasets: [
+        {
+          backgroundColor: [
+            "#657BFF",
+            "rgba(101,123,255,0.6)",
+            "rgba(101,123,255,0.3)",
+          ],
+          data: dataset,
+          borderWidth: 0,
+        },
+      ],
+    },
+    options: {
+      legend: {
+        onClick: null,
+      },
+    },
+  });
+}
+
+function getLineChart() {
+  const grades = [];
+  const semesters = [];
+
+  for (let i = 0; i < student.grades.semesters.length; i++) {
+    if (student.grades.semesters[i].gradeAverage === "-") {
+      continue;
+    }
+    semesters.push(student.grades.semesters[i].id);
+    grades.push(
+      Number(
+        student.grades.semesters[i].gradeAverage
+          .replace("-", "")
+          .replace(",", ".")
+      )
+    );
+  }
+
+  return new Chart(lineChart, {
+    type: "line",
+    data: {
+      labels: semesters,
+      datasets: [
+        {
+          label: "Μέσος Όρος / Εξάμηνο",
+          fill: true,
+          lineTension: 0.4,
+          backgroundColor: "rgba(101,123,255,0.41)",
+          borderColor: "#657BFF",
+          borderCapStyle: "butt",
+          borderDash: [],
+          borderDashOffset: 0.0,
+          borderJoinStyle: "miter",
+          pointBorderColor: "rgba(75,192,192,1)",
+          pointBackgroundColor: "#fff",
+          pointBorderWidth: 1,
+          pointHoverRadius: 5,
+          pointHoverBackgroundColor: "rgba(75,192,192,1)",
+          pointHoverBorderColor: "rgba(220,220,220,1)",
+          pointHoverBorderWidth: 2,
+          pointRadius: 1,
+          pointHitRadius: 10,
+          data: grades,
+          spanGaps: false,
+          duration: 4000,
+          easing: "easeInQuart",
+        },
+      ],
+    },
+    options: {
+      legend: {
+        onClick: null,
+        labels: {
+          boxWidth: 0,
+        },
+      },
+      scales: {
+        xAxis: {
+          grid: {
+            display: true,
+          },
+        },
+        yAxis: {
+          grid: {
+            drawBorder: false,
+            display: false,
+          },
+          ticks: {
+            max: 4,
+          },
+        },
+      },
+    },
+  });
+}
+
+function updateDoughnutChart() {
+  const dataset = [0, 0, 0];
+  dataset[0] = Number(student.grades.totalPassedCourses);
+
+  for (const semester of student.grades.semesters) {
+    for (const course of semester.courses) {
+      if (course.grade === "") {
+        continue;
+      }
+      if (course.grade === "-") {
+        dataset[2]++;
+      } else if (Number(course.grade) < 5) {
+        dataset[1]++;
+      }
+    }
+  }
+
+  doughnutChart.data.datasets[0].data = dataset;
+  doughnutChart.update();
+}
+
+function updateLineChart() {
+  const grades = [];
+  const semesters = [];
+
+  for (let i = 0; i < student.grades.semesters.length; i++) {
+    if (student.grades.semesters[i].gradeAverage === "-") {
+      continue;
+    }
+    semesters.push(student.grades.semesters[i].id);
+    grades.push(
+      Number(
+        student.grades.semesters[i].gradeAverage
+          .replace("-", "")
+          .replace(",", ".")
+      )
+    );
+  }
+
+  lineChart.data.datasets[0].data = grades;
+  lineChart.data.labels = semesters;
+
+  lineChart.update();
+}

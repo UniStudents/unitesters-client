@@ -1,7 +1,17 @@
 // Header
 .header {
   padding: 2rem 1rem;
-  background-color: var(--ion-color-light);
+  background-color: #eff3fd;
+
+  .link--logo:link,
+  .link--logo:visited {
+    text-decoration: none;
+    color: var(--ion-color-dark);
+  }
+
+  .link--logo:hover {
+    cursor: pointer;
+  }
 }
 
 .brand-container {
@@ -20,12 +30,17 @@
 }
 
 // Forms
+.form-section {
+  margin: 9.6rem 0;
+}
+
 .form {
-  padding: 0 0.6rem;
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: 0 1.2rem;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-  max-width: 40rem;
 
   .btn {
     margin-top: 2rem;
@@ -61,6 +76,9 @@
 }
 
 .form__disclaimer {
+  max-width: 40rem;
+  padding: 0 1.2rem;
+  margin: 2.4rem auto 0 auto;
   font-size: 1.2rem;
   word-spacing: 2px;
   text-align: justify;

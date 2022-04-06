@@ -32,13 +32,13 @@
 
   <body>
     <header class="header">
-      <div class="brand-container">
+      <a class="link--logo brand-container" href="index.html">
         <img src="images/logo.svg " class="brand-container__logo" />
         <p class="brand-container__name">UniStudents</p>
-      </div>
+      </a>
     </header>
 
-    <section class="form-section container">
+    <section class="form-section">
       <form class="form form--login">
         <legend class="form__legend">Σύνδεση</legend>
         <div class="form-group">
@@ -62,7 +62,9 @@
             <option value="NTUA">Εθνικό Μετσόβειο Πολυτεχνείο</option>
             <option value="HMU">Ελληνικό Μεσογειακό Πανεπιστήμιο</option>
             <option value="IONIO">Ιόνιο Πανεπιστήμιο</option>
-            <option value="AUEB">Οικονομικό Πανεπιστήμιο Αθηνών</option>
+            <option value="AUEB" selected>
+              Οικονομικό Πανεπιστήμιο Αθηνών
+            </option>
             <option value="AEGEAN">Πανεπιστήμιο Αιγαίου</option>
             <option value="UNIWA">Πανεπιστήμιο Δυτικής Αττικής</option>
             <option value="UOWM">Πανεπιστήμιο Δυτικής Μακεδονίας</option>
@@ -76,32 +78,38 @@
             <option value="HUA">Χαροκόπειο Πανεπιστήμιο</option>
           </select>
         </div>
-        <div class="loading-animation">
-          <div class="loader"></div>
-          <br />
-          <p>Συγχρονισμός...</p>
-        </div>
         <button id="loginButton" type="submit" class="btn btn-primary">
           Είσοδος
         </button>
-        <p class="form__disclaimer">
-          * Η υπηρεσία με κανένα τρόπο δεν διαχειρίζεται ή έχει πρόσβαση στα
-          στοιχεία σου. Χρησιμοποιούνται καθαρά για τη σύνδεση σου στο επίσημο
-          σύστημα βαθμολογιών στα πλαίσια της δοκιμαστικής έκδοσης της.
-        </p>
       </form>
+      <div class="loading-animation">
+        <div class="loader"></div>
+        <br />
+        <p>Συγχρονισμός...</p>
+      </div>
+      <p class="form__disclaimer">
+        * Η υπηρεσία με κανένα τρόπο δεν διαχειρίζεται ή έχει πρόσβαση στα
+        στοιχεία σου. Χρησιμοποιούνται καθαρά για τη σύνδεση σου στο επίσημο
+        σύστημα βαθμολογιών στα πλαίσια της δοκιμαστικής έκδοσης της.
+      </p>
     </section>
 
     <section class="student-profile">
-      <canvas id="gradesChart" width="10" height="10"></canvas>
-      <canvas id="coursesChart" width="10" height="10"></canvas>
+      <h2 class="student-heading"></h2>
+      <div class="student-profile__lineChart">
+        <canvas id="lineChart" width="200" height="200"></canvas>
+      </div>
+      <div class="student-scores"></div>
+      <div class="student-profile__doughnutChart">
+        <canvas id="doughnutChart" width="200" height="200"></canvas>
+      </div>
     </section>
 
     <section class="student-grades">
       <div class="grades-container"></div>
     </section>
 
-    <div class="messages">
+    <section class="messages">
       <div id="wrong-cr" class="alert alert-danger mt-3">
         <div class="text-center">
           <strong>Λανθασμένα στοιχεία πρόσβασης!</strong>
@@ -117,7 +125,7 @@
           <strong>Κάτι πήγε λάθος. Δοκίμασε ξανά αργότερα.</strong>
         </div>
       </div>
-    </div>
+    </section>
 
     <footer id="disclaimer" class="footer">
       <div class="brand-container">

@@ -10,12 +10,122 @@
   padding: 0.8em 1.6em;
   border: none;
   border-radius: var(--border-radius-main);
-  background-color: var(--ion-color-tertiary);
+  background-color: var(--ion-color-primary);
   color: var(--ion-color-light);
 }
 
 .btn:focus-visible {
   outline: 4px solid rgba(175, 175, 175, 0.5);
+}
+
+// Loading spinner
+.loading-animation {
+  text-align: center;
+  margin-top: 2.4rem;
+
+  p {
+    color: var(--ion-color-dark-shade);
+    font-size: 1.4rem;
+  }
+}
+
+.loader {
+  display: inline-block;
+  width: 4rem;
+  height: 4rem;
+  border: 5px solid #b2bdff;
+  border-radius: 50%;
+  border-top-color: var(--ion-color-primary);
+  animation: spin 1.2s ease-in-out infinite;
+  -webkit-animation: spin 1.2s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes spin {
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+// Profile charts/scores
+.student-profile {
+  display: none;
+  padding: 1rem;
+  background-color: #eff3fd;
+}
+
+.student-heading,
+.student-profile__lineChart,
+.student-profile__doughnutChart {
+  background-color: #fff;
+  border-radius: var(--border-radius-main);
+  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.student-heading {
+  padding: 1rem;
+}
+
+.student-heading__message,
+.student-heading__name {
+  display: block;
+  font-weight: 500;
+}
+
+.student-heading__name {
+  font-size: 2rem;
+  color: var(--ion-color-primary);
+}
+
+.student-profile__lineChart {
+  padding: 0.4rem;
+  margin: 1rem 0;
+  max-height: 20rem;
+}
+
+#lineChart {
+  max-height: 18rem;
+}
+
+.student-scores {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.student-score {
+  padding: 1rem;
+  background-color: #fff;
+  border-radius: var(--border-radius-main);
+  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  word-wrap: break-word;
+  width: 30%;
+}
+
+.student-score__number {
+  font-size: 2rem;
+}
+
+.student-score__description {
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.student-profile__doughnutChart {
+  padding: 1rem;
+  margin-top: 1rem;
+  max-height: 40rem;
+}
+
+#doughnutChart {
+  max-height: 38rem;
 }
 
 // Courses grades
@@ -37,7 +147,7 @@
 .course {
   background-color: #fff;
   padding: 1.2rem 1rem;
-  box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.2);
   border-radius: var(--border-radius-main);
   display: flex;
   align-items: center;
@@ -54,7 +164,8 @@
   text-overflow: ellipsis;
 }
 
-.course-info__code {
+.course-info__code,
+.course-info__type {
   font-size: 1.2rem;
   font-weight: 500;
   color: #777;
@@ -65,49 +176,9 @@
   font-weight: 500;
 }
 
-.course-info__type {
-  font-size: 1.2rem;
-  font-weight: 500;
-
-  color: #777;
-}
-
 .course-grade {
-  padding-left: 0.6rem;
+  padding-left: 1rem;
   color: var(--ion-color-primary);
   font-size: 3rem;
   font-weight: 500;
-}
-
-// Loading spinner
-.loading-animation {
-  text-align: center;
-  margin-top: 2.4rem;
-
-  p {
-    color: var(--ion-color-dark-shade);
-    font-size: 1.4rem;
-  }
-}
-
-.loader {
-  display: inline-block;
-  width: 4rem;
-  height: 4rem;
-  border: 5px solid #c6b4ff;
-  border-radius: 50%;
-  border-top-color: var(--ion-color-tertiary);
-  animation: spin 1.2s ease-in-out infinite;
-  -webkit-animation: spin 1.2s ease-in-out infinite;
-}
-
-@keyframes spin {
-  to {
-    -webkit-transform: rotate(360deg);
-  }
-}
-@-webkit-keyframes spin {
-  to {
-    -webkit-transform: rotate(360deg);
-  }
 }
