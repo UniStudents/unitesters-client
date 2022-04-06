@@ -110,7 +110,9 @@ body {
 }
 
 .btn:focus-visible {
-  outline: 4px solid rgba(175, 175, 175, 0.5);
+  outline: none;
+  -webkit-box-shadow: 0 0 0 4px rgba(200, 200, 200, 0.5);
+          box-shadow: 0 0 0 4px rgba(200, 200, 200, 0.5);
 }
 
 .loading-animation {
@@ -380,7 +382,9 @@ body {
 }
 
 .form-group__input:focus-visible {
-  outline: 4px solid rgba(175, 175, 175, 0.5);
+  outline: none;
+  -webkit-box-shadow: 0 0 0 4px rgba(200, 200, 200, 0.5);
+          box-shadow: 0 0 0 4px rgba(200, 200, 200, 0.5);
 }
 
 .form__disclaimer {
