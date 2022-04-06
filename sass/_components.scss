@@ -3,6 +3,11 @@
   max-width: 95%;
 }
 
+// Hidden
+.hidden {
+  display: none !important;
+}
+
 // Button
 .btn {
   font-size: 1.6rem;
@@ -54,8 +59,7 @@
 
 // Profile charts/scores
 .student-profile {
-  display: none;
-  padding: 1rem;
+  padding: 1.3rem;
   background-color: #eff3fd;
 }
 
@@ -132,7 +136,8 @@
 // Courses grades
 .grades-container {
   background-color: #eff3fd;
-  padding: 6.4rem 1.2rem;
+  padding: 1.6rem 1.3rem;
+  transition: all 0.5s;
 }
 
 .semester {

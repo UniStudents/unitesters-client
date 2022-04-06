@@ -99,6 +99,10 @@ body {
   max-width: 95%;
 }
 
+.hidden {
+  display: none !important;
+}
+
 .btn {
   font-size: 1.6rem;
   font-weight: 500;
@@ -149,8 +153,7 @@ body {
 }
 
 .student-profile {
-  display: none;
-  padding: 1rem;
+  padding: 1.3rem;
   background-color: #eff3fd;
 }
 
@@ -237,7 +240,9 @@ body {
 
 .grades-container {
   background-color: #eff3fd;
-  padding: 6.4rem 1.2rem;
+  padding: 1.6rem 1.3rem;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
 }
 
 .semester {
@@ -298,7 +303,7 @@ body {
 
 .header {
   padding: 2rem 1rem;
-  background-color: #eff3fd;
+  background-color: #fff;
 }
 
 .header .link--logo:link,
@@ -328,6 +333,62 @@ body {
   font-size: 2rem;
   font-weight: 700;
   letter-spacing: 1px;
+}
+
+.tabs-container {
+  margin-top: 0.4rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.tab {
+  width: 13rem;
+  background-color: #fff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 1rem;
+  padding: 1.2rem;
+  border-bottom: 2px solid #fff;
+  cursor: pointer;
+}
+
+.tab__icon {
+  width: 3rem;
+  height: 3rem;
+  color: #999;
+  -webkit-transition: color 0.4s;
+  transition: color 0.4s;
+}
+
+.tab--active {
+  border-bottom: 2px solid var(--ion-color-primary);
+}
+
+.tab--active .tab__icon,
+.tab--active .tab__name {
+  color: var(--ion-color-primary);
+}
+
+.tab__name {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #999;
+  -webkit-transition: color 0.4s;
+  transition: color 0.4s;
 }
 
 .form-section {

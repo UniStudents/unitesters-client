@@ -63,7 +63,9 @@
             <option value="NTUA">Εθνικό Μετσόβειο Πολυτεχνείο</option>
             <option value="HMU">Ελληνικό Μεσογειακό Πανεπιστήμιο</option>
             <option value="IONIO">Ιόνιο Πανεπιστήμιο</option>
-            <option value="AUEB">Οικονομικό Πανεπιστήμιο Αθηνών</option>
+            <option value="AUEB" selected>
+              Οικονομικό Πανεπιστήμιο Αθηνών
+            </option>
             <option value="AEGEAN">Πανεπιστήμιο Αιγαίου</option>
             <option value="UNIWA">Πανεπιστήμιο Δυτικής Αττικής</option>
             <option value="UOWM">Πανεπιστήμιο Δυτικής Μακεδονίας</option>
@@ -81,7 +83,7 @@
           Είσοδος
         </button>
       </form>
-      <div class="loading-animation">
+      <div class="loading-animation hidden">
         <div class="loader"></div>
         <br />
         <p>Συγχρονισμός...</p>
@@ -93,7 +95,18 @@
       </p>
     </section>
 
-    <section class="student-profile">
+    <div class="tabs-container hidden">
+      <div id="tab-home" class="tab tab--active">
+        <ion-icon name="home" class="tab__icon"></ion-icon>
+        <h2 class="tab__name">Αρχική</h2>
+      </div>
+      <div id="tab-grades" class="tab">
+        <ion-icon name="school" class="tab__icon"></ion-icon>
+        <h2 class="tab__name">Βαθμολογία</h2>
+      </div>
+    </div>
+
+    <section class="student-profile hidden">
       <h2 class="student-heading"></h2>
       <div class="student-profile__lineChart">
         <canvas id="lineChart" width="200" height="200"></canvas>
@@ -104,7 +117,7 @@
       </div>
     </section>
 
-    <section class="student-grades">
+    <section class="student-grades hidden">
       <div class="grades-container"></div>
     </section>
 

@@ -15,20 +15,30 @@ const gradesContainer = document.querySelector(".grades-container");
 const loader = document.querySelector(".loading-animation");
 const doughnutChart = document.getElementById("doughnutChart").getContext("2d");
 const lineChart = document.getElementById("lineChart").getContext("2d");
+const tabsContainer = document.querySelector(".tabs-container");
+const tabHome = document.querySelector("#tab-home");
+const tabGrades = document.querySelector("#tab-grades");
 let student;
 
 messages.style.display = "none";
 wrongCr.style.display = "none";
 systemDown.style.display = "none";
 problem.style.display = "none";
-loader.style.display = "none";
-gradesSection.style.display = "none";
+
+[tabHome, tabGrades].forEach((el) => {
+  el.addEventListener("click", function () {
+    tabHome.classList.toggle("tab--active");
+    tabGrades.classList.toggle("tab--active");
+    profileSection.classList.toggle("hidden");
+    gradesSection.classList.toggle("hidden");
+  });
+});
 
 loginButton.addEventListener("click", (event) => {
   event.preventDefault();
   loginButton.style.display = "none";
   disclamer.style.display = "none";
-  loader.style.display = "";
+  loader.classList.remove("hidden");
   const university = document.querySelector("#universities").value;
   const username = document.querySelector("#username").value;
   const password = document.querySelector("#password").value;
@@ -44,7 +54,7 @@ loginButton.addEventListener("click", (event) => {
   })
     .then((response) => {
       form.style.display = "none";
-      loader.style.display = "none";
+      loader.classList.add("hidden");
       if (response.status == 200) {
         form.style.display = "none";
         messages.style.display = "";
@@ -86,32 +96,30 @@ function getStudentGrades() {
     for (let j = 0; j < semester.courses.length; j++) {
       const course = semester.courses[j];
       html += `
-            <li class="course">
-                <div class="course-info">
-                <p class="course-info__code">${course.id}</p>
-                <p class="course-info__name">
-                ${course.name}
-                </p>
-                <p class="course-info__type">${
-                  course.type === "" || course.examPeriod === "-"
-                    ? "-"
-                    : `${course.type} | ${course.examPeriod}`
-                }</p>
-                </div>
-                <p class="course-grade">${course.grade}</p>
-            </li>
+              <li class="course">
+                  <div class="course-info">
+                  <p class="course-info__code">${course.id}</p>
+                  <p class="course-info__name">
+                  ${course.name}
+                  </p>
+                  <p class="course-info__type">${
+                    course.type === "" || course.examPeriod === "-"
+                      ? "-"
+                      : `${course.type} | ${course.examPeriod}`
+                  }</p>
+                  </div>
+                  <p class="course-grade">${course.grade}</p>
+              </li>
             `;
     }
     html += `
             </ul>
         `;
     gradesContainer.innerHTML += html;
-    gradesSection.style.display = "";
   }
 }
 
 function getStudentProfile() {
-  profileSection.style.display = "block";
   const info = student.info;
   const grades = student.grades;
   console.log(info, grades);
@@ -139,6 +147,8 @@ function getStudentProfile() {
     `;
   getDoughnutChart();
   getStudentGrades();
+  profileSection.classList.remove("hidden");
+  tabsContainer.classList.remove("hidden");
 }
 
 function getDoughnutChart() {
