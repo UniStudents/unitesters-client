@@ -68,7 +68,7 @@
 .student-profile__doughnutChart {
   background-color: #fff;
   border-radius: var(--border-radius-main);
-  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 8px 0 rgba(50, 50, 50, 0.2);
 }
 
 .student-heading {
@@ -135,6 +135,7 @@
 
 // Courses grades
 .grades-container {
+  line-height: 1.6;
   background-color: #eff3fd;
   padding: 1.6rem 1.3rem;
   transition: all 0.5s;
@@ -153,7 +154,7 @@
 .course {
   background-color: #fff;
   padding: 1.2rem 1rem;
-  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 8px 0 rgba(50, 50, 50, 0.2);
   border-radius: var(--border-radius-main);
   display: flex;
   align-items: center;
@@ -183,6 +184,7 @@
 }
 
 .course-grade {
+  line-height: 1.6;
   padding-left: 1rem;
   color: var(--ion-color-primary);
   font-size: 3rem;

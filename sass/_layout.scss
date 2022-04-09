@@ -15,7 +15,7 @@
 }
 
 .brand-container {
-  display: flex;
+  display: inline-flex;
   align-items: center;
 }
 
@@ -35,6 +35,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 2.4rem;
 }
 
 .tab {
@@ -124,6 +125,7 @@
   margin: 2.4rem auto 0 auto;
   font-size: 1.2rem;
   word-spacing: 2px;
+  line-height: 1.6;
   text-align: justify;
 }
 
@@ -169,6 +171,10 @@
   align-items: center;
   justify-content: space-between;
   width: 15rem;
+
+  a {
+    height: 2.5rem;
+  }
 }
 
 .socials-container__logo {
@@ -177,6 +183,11 @@
   color: var(--ion-color-light);
 }
 
-.footer-cta__img {
+.footer-cta {
   width: 15rem;
+  height: 4.5rem;
+}
+
+.footer-cta__img {
+  width: 100%;
 }

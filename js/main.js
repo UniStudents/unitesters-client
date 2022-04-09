@@ -76,10 +76,10 @@ loginButton.addEventListener("click", (event) => {
     .then((data) => {
       if (data) {
         localStorage.setItem("cookies", JSON.stringify(data.cookies));
-        console.log(data);
         student = data.student;
         getStudentProfile();
         getLineChart();
+        window.scrollTo({ top: 0, behavior: "smooth" });
       }
     });
 });
@@ -185,8 +185,10 @@ function getDoughnutChart() {
       ],
     },
     options: {
-      legend: {
-        onClick: null,
+      plugins: {
+        legend: {
+          onClick: null,
+        },
       },
     },
   });
@@ -242,25 +244,27 @@ function getLineChart() {
       ],
     },
     options: {
-      legend: {
-        onClick: null,
-        labels: {
-          boxWidth: 0,
+      plugins: {
+        legend: {
+          onClick: null,
+          labels: {
+            boxWidth: 0,
+          },
         },
       },
       scales: {
-        xAxis: {
+        x: {
           grid: {
             display: true,
           },
         },
-        yAxis: {
+        y: {
           grid: {
             drawBorder: false,
             display: false,
           },
           ticks: {
-            max: 4,
+            maxTicksLimit: 4,
           },
         },
       },
