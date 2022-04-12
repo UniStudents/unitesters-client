@@ -75,13 +75,13 @@
 
 // Forms
 .form-section {
-  margin: 9.6rem 0;
+  width: 98%;
+  max-width: 40rem;
+  margin: 9.6rem auto;
+  padding: 0 1.2rem;
 }
 
 .form {
-  max-width: 40rem;
-  margin: 0 auto;
-  padding: 0 1.2rem;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
@@ -97,13 +97,22 @@
   }
 
   &__disclaimer {
-    max-width: 40rem;
-    padding: 0 1.2rem;
-    margin: 2.4rem auto 0 auto;
+    margin-top: 2.4rem;
     font-size: 1.2rem;
     word-spacing: 2px;
     line-height: 1.6;
     text-align: justify;
+  }
+
+  &__error {
+    background-color: #f03e3e;
+    padding: 2rem 0;
+    margin-top: 2.4rem;
+    color: #fff;
+    font-size: 1.4rem;
+    font-weight: 400;
+    border-radius: var(--border-radius-main);
+    text-align: center;
   }
 }
 
@@ -126,6 +135,10 @@
     &:focus-visible {
       outline: none;
       box-shadow: 0 0 0 4px rgba(200, 200, 200, 0.5);
+    }
+
+    &--error {
+      border: 2px solid #f03e3e;
     }
   }
 }

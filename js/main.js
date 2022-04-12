@@ -1,9 +1,5 @@
 const loginButton = document.querySelector("#loginButton");
 const BASE_URL = "https://unistudents-cb.herokuapp.com/api/student/";
-const messages = document.querySelector(".messages");
-const wrongCr = document.querySelector("#wrong-cr");
-const systemDown = document.querySelector("#system-down");
-const problem = document.querySelector("#problem");
 const form = document.querySelector(".form-section");
 const disclamer = document.querySelector(".form__disclaimer");
 const infoCardBody = document.querySelector("#info > .card-body");
@@ -18,26 +14,27 @@ const lineChart = document.getElementById("lineChart").getContext("2d");
 const tabsContainer = document.querySelector(".tabs-container");
 const tabHome = document.querySelector("#tab-home");
 const tabGrades = document.querySelector("#tab-grades");
+const error408 = document.querySelector("#error-408");
+const error500 = document.querySelector("#error-500");
 let student;
 
-messages.style.display = "none";
-wrongCr.style.display = "none";
-systemDown.style.display = "none";
-problem.style.display = "none";
-
-[tabHome, tabGrades].forEach((el) => {
-  el.addEventListener("click", function () {
-    tabHome.classList.toggle("tab--active");
-    tabGrades.classList.toggle("tab--active");
-    profileSection.classList.toggle("hidden");
-    gradesSection.classList.toggle("hidden");
-  });
+tabHome.addEventListener("click", function () {
+  tabHome.classList.add("tab--active");
+  tabGrades.classList.remove("tab--active");
+  profileSection.classList.remove("hidden");
+  gradesSection.classList.add("hidden");
+});
+tabGrades.addEventListener("click", function () {
+  tabHome.classList.remove("tab--active");
+  tabGrades.classList.add("tab--active");
+  profileSection.classList.add("hidden");
+  gradesSection.classList.remove("hidden");
 });
 
 loginButton.addEventListener("click", (event) => {
   event.preventDefault();
-  loginButton.style.display = "none";
-  disclamer.style.display = "none";
+  loginButton.classList.add("hidden");
+  disclamer.classList.add("hidden");
   loader.classList.remove("hidden");
   const university = document.querySelector("#universities").value;
   const username = document.querySelector("#username").value;
@@ -53,24 +50,20 @@ loginButton.addEventListener("click", (event) => {
     headers: { "Content-type": "application/json; charset=UTF-8" },
   })
     .then((response) => {
-      form.style.display = "none";
       loader.classList.add("hidden");
+      const pass = document.querySelector("#password");
+      pass.classList.remove("form-group__input--error");
       if (response.status == 200) {
-        form.style.display = "none";
-        messages.style.display = "";
+        form.classList.add("hidden");
         return response.json();
       } else if (response.status == 401) {
-        form.style.display = "none";
-        messages.style.display = "";
-        wrongCr.style.display = "";
+        loginButton.classList.remove("hidden");
+        pass.value = "";
+        pass.classList.add("form-group__input--error");
       } else if (response.status == 408) {
-        form.style.display = "none";
-        messages.style.display = "";
-        systemDown.style.display = "";
+        error408.classList.remove("hidden");
       } else if (response.status == 500) {
-        form.style.display = "none";
-        messages.style.display = "";
-        problem.style.display = "";
+        error500.classList.remove("hidden");
       }
     })
     .then((data) => {

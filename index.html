@@ -41,6 +41,17 @@
       </a>
     </header>
 
+    <div class="tabs-container hidden">
+      <div id="tab-home" class="tab tab--active">
+        <ion-icon name="home" class="tab__icon"></ion-icon>
+        <h2 class="tab__name">Αρχική</h2>
+      </div>
+      <div id="tab-grades" class="tab">
+        <ion-icon name="school" class="tab__icon"></ion-icon>
+        <h2 class="tab__name">Βαθμολογία</h2>
+      </div>
+    </div>
+
     <section class="form-section">
       <form class="form form--login">
         <legend class="form__legend">Σύνδεση</legend>
@@ -96,18 +107,13 @@
         στοιχεία σου. Χρησιμοποιούνται καθαρά για τη σύνδεση σου στο επίσημο
         σύστημα βαθμολογιών στα πλαίσια της δοκιμαστικής έκδοσης της.
       </p>
+      <p id="error-408" class="form__error hidden">
+        Το σύστημα της σχολής σου δεν ανταποκρίνεται!
+      </p>
+      <p id="error-500" class="form__error hidden">
+        Κάτι πήγε λάθος. Δοκίμασε ξανά αργότερα.
+      </p>
     </section>
-
-    <div class="tabs-container hidden">
-      <div id="tab-home" class="tab tab--active">
-        <ion-icon name="home" class="tab__icon"></ion-icon>
-        <h2 class="tab__name">Αρχική</h2>
-      </div>
-      <div id="tab-grades" class="tab">
-        <ion-icon name="school" class="tab__icon"></ion-icon>
-        <h2 class="tab__name">Βαθμολογία</h2>
-      </div>
-    </div>
 
     <section class="student-profile hidden">
       <h2 class="student-heading"></h2>
@@ -122,24 +128,6 @@
 
     <section class="student-grades hidden">
       <div class="grades-container"></div>
-    </section>
-
-    <section class="messages">
-      <div id="wrong-cr" class="alert alert-danger mt-3">
-        <div class="text-center">
-          <strong>Λανθασμένα στοιχεία πρόσβασης!</strong>
-        </div>
-      </div>
-      <div id="system-down" class="alert alert-info mt-3">
-        <div class="text-center">
-          <strong>Το σύστημα της σχολής σου δεν ανταποκρίνεται!</strong>
-        </div>
-      </div>
-      <div id="problem" class="alert alert-warning mt-3">
-        <div class="text-center">
-          <strong>Κάτι πήγε λάθος. Δοκίμασε ξανά αργότερα.</strong>
-        </div>
-      </div>
     </section>
 
     <footer id="disclaimer" class="footer">
