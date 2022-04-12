@@ -17,11 +17,11 @@
   border-radius: var(--border-radius-main);
   background-color: var(--ion-color-primary);
   color: var(--ion-color-light);
-}
 
-.btn:focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 4px rgba(200, 200, 200, 0.5);
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(200, 200, 200, 0.5);
+  }
 }
 
 // Loading spinner
@@ -55,138 +55,4 @@
   to {
     -webkit-transform: rotate(360deg);
   }
-}
-
-// Profile charts/scores
-.student-profile {
-  padding: 1.3rem;
-  background-color: #eff3fd;
-}
-
-.student-heading,
-.student-profile__lineChart,
-.student-profile__doughnutChart {
-  background-color: #fff;
-  border-radius: var(--border-radius-main);
-  box-shadow: 0 0 8px 0 rgba(50, 50, 50, 0.2);
-}
-
-.student-heading {
-  padding: 1rem;
-}
-
-.student-heading__message,
-.student-heading__name {
-  display: block;
-  font-weight: 500;
-}
-
-.student-heading__name {
-  font-size: 2rem;
-  color: var(--ion-color-primary);
-}
-
-.student-profile__lineChart {
-  padding: 0.4rem;
-  margin: 1rem 0;
-  max-height: 20rem;
-}
-
-#lineChart {
-  max-height: 18rem;
-}
-
-.student-scores {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-}
-
-.student-score {
-  padding: 1rem;
-  background-color: #fff;
-  border-radius: var(--border-radius-main);
-  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.2);
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-  word-wrap: break-word;
-  width: 30%;
-}
-
-.student-score__number {
-  font-size: 2rem;
-}
-
-.student-score__description {
-  font-size: 1.1rem;
-  color: #333;
-}
-
-.student-profile__doughnutChart {
-  padding: 1rem;
-  margin-top: 1rem;
-  max-height: 40rem;
-}
-
-#doughnutChart {
-  max-height: 38rem;
-}
-
-// Courses grades
-.grades-container {
-  line-height: 1.6;
-  background-color: #eff3fd;
-  padding: 1.6rem 1.3rem;
-  transition: all 0.5s;
-}
-
-.semester {
-  font-size: 1.7rem;
-  margin-bottom: 1.2rem;
-}
-
-.courses:not(:last-child) {
-  margin-bottom: 3.2rem;
-  list-style: none;
-}
-
-.course {
-  background-color: #fff;
-  padding: 1.2rem 1rem;
-  box-shadow: 0 0 8px 0 rgba(50, 50, 50, 0.2);
-  border-radius: var(--border-radius-main);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.course:not(:last-child) {
-  margin-bottom: 2.4rem;
-}
-
-.course-info {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.course-info__code,
-.course-info__type {
-  font-size: 1.2rem;
-  font-weight: 500;
-  color: #777;
-}
-
-.course-info__name {
-  font-size: 1.5rem;
-  font-weight: 500;
-}
-
-.course-grade {
-  line-height: 1.6;
-  padding-left: 1rem;
-  color: var(--ion-color-primary);
-  font-size: 3rem;
-  font-weight: 500;
 }

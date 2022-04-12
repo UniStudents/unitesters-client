@@ -1,0 +1,74 @@
+.student-profile {
+  padding: 1.3rem;
+  background-color: #eff3fd;
+
+  &__lineChart {
+    padding: 0.4rem;
+    margin: 1rem 0;
+    max-height: 20rem;
+  }
+
+  &__doughnutChart {
+    padding: 1rem;
+    margin-top: 1rem;
+    max-height: 40rem;
+  }
+}
+
+.student-heading,
+.student-profile__lineChart,
+.student-profile__doughnutChart {
+  background-color: #fff;
+  border-radius: var(--border-radius-main);
+  box-shadow: 0 0 8px 0 rgba(50, 50, 50, 0.2);
+}
+
+.student-heading {
+  padding: 1rem;
+
+  &__message,
+  &__name {
+    display: block;
+    font-weight: 500;
+  }
+
+  &__name {
+    font-size: 2rem;
+    color: var(--ion-color-primary);
+  }
+}
+
+#lineChart {
+  max-height: 18rem;
+}
+
+#doughnutChart {
+  max-height: 38rem;
+}
+
+.student-scores {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.student-score {
+  padding: 1rem;
+  background-color: #fff;
+  border-radius: var(--border-radius-main);
+  box-shadow: 0 0 8px 0 rgba(50, 50, 50, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  word-wrap: break-word;
+  width: 30%;
+
+  &__number {
+    font-size: 2rem;
+  }
+
+  &__description {
+    font-size: 1.1rem;
+    color: #333;
+  }
+}

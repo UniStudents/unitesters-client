@@ -1,0 +1,56 @@
+.grades-container {
+  line-height: 1.6;
+  background-color: #eff3fd;
+  padding: 1.6rem 1.3rem;
+  transition: all 0.5s;
+}
+
+.semester {
+  font-size: 1.7rem;
+  margin-bottom: 1.2rem;
+}
+
+.courses:not(:last-child) {
+  margin-bottom: 3.2rem;
+  list-style: none;
+}
+
+.course {
+  background-color: #fff;
+  padding: 1.2rem 1rem;
+  box-shadow: 0 0 8px 0 rgba(50, 50, 50, 0.2);
+  border-radius: var(--border-radius-main);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &:not(:last-child) {
+    margin-bottom: 2.4rem;
+  }
+}
+
+.course-info {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  &__code,
+  &__type {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #777;
+  }
+
+  &__name {
+    font-size: 1.5rem;
+    font-weight: 500;
+  }
+}
+
+.course-grade {
+  line-height: 1.6;
+  padding-left: 1rem;
+  color: var(--ion-color-primary);
+  font-size: 3rem;
+  font-weight: 500;
+}
