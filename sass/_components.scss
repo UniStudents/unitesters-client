@@ -8,6 +8,10 @@
   display: none !important;
 }
 
+.ready {
+  --display: block;
+}
+
 // Button
 .btn {
   font-size: 1.6rem;

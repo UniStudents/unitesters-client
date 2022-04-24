@@ -12,6 +12,10 @@
   .link--logo:hover {
     cursor: pointer;
   }
+
+  @include xl {
+    border-bottom: 1px solid #d2d2d2;
+  }
 }
 
 .brand-container {
@@ -31,11 +35,17 @@
 
 // Tabs
 .tabs-container {
-  margin-top: 0.4rem;
+  padding-top: 0.4rem;
+  background-color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 2.4rem;
+  border-bottom: 0.25px solid #d2d2d2;
+
+  @include xl {
+    display: none;
+  }
 }
 
 .tab {
@@ -73,12 +83,37 @@
   }
 }
 
+// Student tabs section
+.tabs-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  @include xl {
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: center;
+    padding: 4.8rem 0;
+  }
+}
+
 // Forms
 .form-section {
   width: 98%;
-  max-width: 40rem;
   margin: 9.6rem auto;
   padding: 0 1.2rem;
+
+  @include xs {
+    max-width: 47rem;
+  }
+
+  @include sm {
+    max-width: 47rem;
+  }
+
+  @include breakpoint(map-get($breakpoints, "md")) {
+    max-width: 60rem;
+  }
 }
 
 .form {
@@ -138,7 +173,7 @@
     }
 
     &--error {
-      border: 2px solid #f03e3e;
+      border: 1.75px solid #f03e3e;
     }
   }
 }
@@ -163,6 +198,43 @@
     .brand-container__name {
       font-weight: 500;
       color: var(--ion-color-light);
+    }
+  }
+
+  @include md {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    justify-content: center;
+    padding: 3.2rem 20rem;
+
+    .socials {
+      grid-column: 1;
+      grid-row: 2;
+    }
+
+    .socials__heading {
+      display: none;
+    }
+  }
+
+  @include breakpoint(map-get($breakpoints, "lg")) {
+    flex-direction: row;
+    justify-content: center;
+    padding: 6.4rem 0;
+
+    .brand-container {
+      order: 1;
+    }
+    .footer-cta {
+      order: 3;
+    }
+    .socials {
+      order: 2;
+    }
+
+    .socials__heading {
+      display: none;
     }
   }
 }

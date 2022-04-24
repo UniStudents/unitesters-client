@@ -1,17 +1,23 @@
 .student-profile {
   padding: 1.3rem;
-  background-color: #eff3fd;
+  width: 100%;
+  max-width: 50rem;
 
   &__lineChart {
     padding: 0.4rem;
-    margin: 1rem 0;
+    margin: 1.6rem 0;
     max-height: 20rem;
   }
 
   &__doughnutChart {
     padding: 1rem;
-    margin-top: 1rem;
+    margin-top: 1.6rem;
     max-height: 40rem;
+  }
+
+  @include xl {
+    display: var(--display) !important;
+    padding: 0 1.6rem;
   }
 }
 
@@ -35,6 +41,11 @@
   &__name {
     font-size: 2rem;
     color: var(--ion-color-primary);
+
+    @include xl {
+      font-size: 2.4rem;
+      margin-top: 0.2rem;
+    }
   }
 }
 
@@ -65,10 +76,18 @@
 
   &__number {
     font-size: 2rem;
+
+    @include xl {
+      font-size: 2.2rem;
+    }
   }
 
   &__description {
     font-size: 1.1rem;
     color: #333;
+
+    @include xl {
+      font-size: 1.4rem;
+    }
   }
 }

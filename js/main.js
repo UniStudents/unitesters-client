@@ -60,6 +60,7 @@ loginButton.addEventListener("click", (event) => {
         loginButton.classList.remove("hidden");
         pass.value = "";
         pass.classList.add("form-group__input--error");
+        document.querySelector("label[for=password]").style.color = "#f03e3e";
       } else if (response.status == 408) {
         error408.classList.remove("hidden");
       } else if (response.status == 500) {
@@ -73,6 +74,8 @@ loginButton.addEventListener("click", (event) => {
         getStudentProfile();
         getLineChart();
         window.scrollTo({ top: 0, behavior: "smooth" });
+        profileSection.classList.add("ready");
+        document.querySelector(".student-grades").classList.add("ready");
       }
     });
 });
@@ -115,13 +118,10 @@ function getStudentGrades() {
 function getStudentProfile() {
   const info = student.info;
   const grades = student.grades;
-  console.log(info, grades);
-  console.log(studentWelcome);
   studentWelcome.innerHTML += `
         <span class="student-heading__message">Συνδέθηκες ως</span>
         <span class="student-heading__name">${info.firstName} ${info.lastName}</span>
     `;
-  console.log(studentScores);
   studentScores.innerHTML += `
         <div class="student-scores">
             <div class="student-score">
