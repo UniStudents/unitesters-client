@@ -109,6 +109,10 @@ body {
   --display: block;
 }
 
+.red {
+  color: #f03e3e !important;
+}
+
 .btn {
   font-size: 1.6rem;
   font-weight: 500;

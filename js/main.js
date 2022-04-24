@@ -69,6 +69,7 @@ loginButton.addEventListener("click", (event) => {
     })
     .then((data) => {
       if (data) {
+        console.log(data);
         localStorage.setItem("cookies", JSON.stringify(data.cookies));
         student = data.student;
         getStudentProfile();
@@ -104,7 +105,9 @@ function getStudentGrades() {
                       : `${course.type} | ${course.examPeriod}`
                   }</p>
                   </div>
-                  <p class="course-grade">${course.grade}</p>
+                  <p class="course-grade ${
+                    course.grade < 5 && course.grade >= 0 ? "red" : ""
+                  }">${course.grade}</p>
               </li>
             `;
     }
