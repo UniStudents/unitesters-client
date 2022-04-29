@@ -677,9 +677,16 @@ body {
   margin-bottom: 1.2rem;
 }
 
+.courses {
+  list-style: none;
+}
+
 .courses:not(:last-child) {
   margin-bottom: 4rem;
-  list-style: none;
+}
+
+.courses:last-child .course:last-child {
+  margin-bottom: 1.5rem;
 }
 
 .course {

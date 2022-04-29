@@ -25,9 +25,18 @@
   margin-bottom: 1.2rem;
 }
 
-.courses:not(:last-child) {
-  margin-bottom: 4rem;
+.courses {
   list-style: none;
+
+  &:not(:last-child) {
+    margin-bottom: 4rem;
+  }
+
+  &:last-child {
+    .course:last-child {
+      margin-bottom: 1.5rem;
+    }
+  }
 }
 
 .course {
