@@ -61,6 +61,10 @@ loginButton.addEventListener("click", (event) => {
         pass.value = "";
         pass.classList.add("form-group__input--error");
         document.querySelector("label[for=password]").style.color = "#f03e3e";
+        document
+          .querySelector("#username")
+          .classList.add("form-group__input--error");
+        document.querySelector("label[for=username]").style.color = "#f03e3e";
       } else if (response.status == 408) {
         error408.classList.remove("hidden");
       } else if (response.status == 500) {
