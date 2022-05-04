@@ -35,7 +35,6 @@
 // Loading spinner
 .loading-animation {
   text-align: center;
-  margin-top: 2.4rem;
 
   p {
     color: var(--ion-color-dark-shade);
@@ -45,11 +44,11 @@
 
 .loader {
   display: inline-block;
-  width: 4rem;
-  height: 4rem;
-  border: 5px solid #b2bdff;
+  width: 2.4rem;
+  height: 2.4rem;
+  border: 3px solid #b2bdff;
   border-radius: 50%;
-  border-top-color: var(--ion-color-primary);
+  border-top-color: #f2f2f2;
   animation: spin 1.2s ease-in-out infinite;
   -webkit-animation: spin 1.2s ease-in-out infinite;
 }

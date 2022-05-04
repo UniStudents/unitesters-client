@@ -56,18 +56,27 @@
       <form class="form form--login">
         <legend class="form__legend">Σύνδεση</legend>
         <div class="form-group">
-          <label for="username" class="form-group__label">Όνομα Χρήστη</label>
-          <input type="text" class="form-group__input" id="username" />
+          <label for="username" class="form-group__label"
+            >Όνομα Χρήστη <span>*</span></label
+          >
+          <input type="text" class="form-group__input" id="username" required />
         </div>
         <div class="form-group">
           <label for="password" class="form-group__label"
-            >Κωδικός Πρόσβασης</label
+            >Κωδικός Πρόσβασης <span>*</span></label
           >
-          <input type="password" class="form-group__input" id="password" />
+          <input
+            type="password"
+            class="form-group__input"
+            id="password"
+            required
+          />
         </div>
         <div class="form-group">
-          <label for="universities" class="form-group__label">Ίδρυμα</label>
-          <select class="form-group__input" id="universities">
+          <label for="universities" class="form-group__label"
+            >Ίδρυμα <span>*</span></label
+          >
+          <select class="form-group__input" id="universities" required>
             <option value="">Επίλεξε Πανεπιστήμιο</option>
             <option value="ASPETE">Α.Σ.ΠΑΙ.Τ.Ε.</option>
             <option value="AUTH">Αριστοτέλειο Πανεπιστήμιο Θεσσαλονίκης</option>
@@ -77,9 +86,7 @@
             <option value="NTUA">Εθνικό Μετσόβειο Πολυτεχνείο</option>
             <option value="HMU">Ελληνικό Μεσογειακό Πανεπιστήμιο</option>
             <option value="IONIO">Ιόνιο Πανεπιστήμιο</option>
-            <option value="AUEB" selected>
-              Οικονομικό Πανεπιστήμιο Αθηνών
-            </option>
+            <option value="AUEB">Οικονομικό Πανεπιστήμιο Αθηνών</option>
             <option value="AEGEAN">Πανεπιστήμιο Αιγαίου</option>
             <option value="UNIWA">Πανεπιστήμιο Δυτικής Αττικής</option>
             <option value="UOWM">Πανεπιστήμιο Δυτικής Μακεδονίας</option>
@@ -94,18 +101,19 @@
           </select>
         </div>
         <button id="loginButton" type="submit" class="btn btn-primary">
-          Είσοδος
+          <span class="btn--text">Είσοδος</span>
+          <div class="loading-animation hidden">
+            <div class="loader"></div>
+          </div>
         </button>
       </form>
-      <div class="loading-animation hidden">
-        <div class="loader"></div>
-        <br />
-        <p>Συγχρονισμός...</p>
-      </div>
       <p class="form__disclaimer">
         * Η υπηρεσία με κανένα τρόπο δεν διαχειρίζεται ή έχει πρόσβαση στα
         στοιχεία σου. Χρησιμοποιούνται καθαρά για τη σύνδεση σου στο επίσημο
         σύστημα βαθμολογιών στα πλαίσια της δοκιμαστικής έκδοσης της.
+      </p>
+      <p class="form__empty hidden">
+        * Παρακαλώ συμπληρώστε όλα τα πεδία της φόρμας
       </p>
       <p id="error-408" class="form__error hidden">
         Το σύστημα της σχολής σου δεν ανταποκρίνεται!

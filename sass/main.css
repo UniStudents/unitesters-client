@@ -131,7 +131,6 @@ body {
 
 .loading-animation {
   text-align: center;
-  margin-top: 2.4rem;
 }
 
 .loading-animation p {
@@ -141,11 +140,11 @@ body {
 
 .loader {
   display: inline-block;
-  width: 4rem;
-  height: 4rem;
-  border: 5px solid #b2bdff;
+  width: 2.4rem;
+  height: 2.4rem;
+  border: 3px solid #b2bdff;
   border-radius: 50%;
-  border-top-color: var(--ion-color-primary);
+  border-top-color: #f2f2f2;
   animation: spin 1.2s ease-in-out infinite;
   -webkit-animation: spin 1.2s ease-in-out infinite;
 }
@@ -338,7 +337,17 @@ body {
 }
 
 .form .btn {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   margin-top: 2rem;
+  height: 4rem;
 }
 
 .form__disclaimer {
@@ -350,14 +359,31 @@ body {
 }
 
 .form__error {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 4rem;
   background-color: #f03e3e;
-  padding: 2rem 0;
   margin-top: 2.4rem;
   color: #fff;
   font-size: 1.4rem;
   font-weight: 400;
   border-radius: var(--border-radius-main);
+}
+
+.form__empty {
+  margin-top: 2.4rem;
+  font-size: 1.4rem;
+  word-spacing: 2px;
+  line-height: 1.6;
   text-align: center;
+  color: #f03e3e;
 }
 
 .form-group {
@@ -373,6 +399,10 @@ body {
 .form-group__label {
   font-size: 1.6rem;
   margin-bottom: 0.6rem;
+}
+
+.form-group__label span {
+  color: #f03e3e;
 }
 
 .form-group__input {

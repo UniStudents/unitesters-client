@@ -1,14 +1,16 @@
 const loginButton = document.querySelector("#loginButton");
 const BASE_URL = "https://unistudents-cb.herokuapp.com/api/student/";
 const form = document.querySelector(".form-section");
+const btnText = document.querySelector(".btn--text");
+const loader = document.querySelector(".loading-animation");
 const disclamer = document.querySelector(".form__disclaimer");
+const emptyMessage = document.querySelector(".form__empty");
 const infoCardBody = document.querySelector("#info > .card-body");
 const profileSection = document.querySelector(".student-profile");
 const gradesSection = document.querySelector(".student-grades");
 const studentWelcome = document.querySelector(".student-heading");
 const studentScores = document.querySelector(".student-scores");
 const gradesContainer = document.querySelector(".grades-container");
-const loader = document.querySelector(".loading-animation");
 const doughnutChart = document.getElementById("doughnutChart").getContext("2d");
 const lineChart = document.getElementById("lineChart").getContext("2d");
 const tabsContainer = document.querySelector(".tabs-container");
@@ -33,12 +35,17 @@ tabGrades.addEventListener("click", function () {
 
 loginButton.addEventListener("click", (event) => {
   event.preventDefault();
-  loginButton.classList.add("hidden");
   disclamer.classList.add("hidden");
-  loader.classList.remove("hidden");
   const university = document.querySelector("#universities").value;
   const username = document.querySelector("#username").value;
   const password = document.querySelector("#password").value;
+  emptyMessage.classList.add("hidden");
+  if (university === "" || username === "" || password === "") {
+    emptyMessage.classList.remove("hidden");
+    return;
+  }
+  btnText.classList.add("hidden");
+  loader.classList.remove("hidden");
   const cookies = JSON.parse(localStorage.getItem("cookies"));
   fetch(`${BASE_URL}${university}`, {
     method: "POST",
@@ -51,13 +58,13 @@ loginButton.addEventListener("click", (event) => {
   })
     .then((response) => {
       loader.classList.add("hidden");
+      btnText.classList.remove("hidden");
       const pass = document.querySelector("#password");
       pass.classList.remove("form-group__input--error");
       if (response.status == 200) {
         form.classList.add("hidden");
         return response.json();
       } else if (response.status == 401) {
-        loginButton.classList.remove("hidden");
         pass.value = "";
         pass.classList.add("form-group__input--error");
         document.querySelector("label[for=password]").style.color = "#f03e3e";
