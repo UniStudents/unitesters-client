@@ -298,7 +298,6 @@ body {
 
 @media (min-width: 1200px) and (max-height: 900px) {
   .tabs-section {
-    height: calc(100vh - 8rem);
     padding: 1.2rem 0;
   }
 }
@@ -704,7 +703,7 @@ body {
 
 @media (min-width: 1200px) and (max-height: 900px) {
   .student-grades {
-    height: 97%;
+    height: calc(100vh - 12rem);
   }
 }
 

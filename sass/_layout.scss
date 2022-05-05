@@ -98,7 +98,6 @@
   }
 
   @include laptop {
-    height: calc(100vh - 8rem);
     padding: 1.2rem 0;
   }
 }

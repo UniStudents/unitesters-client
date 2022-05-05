@@ -10,7 +10,7 @@
   }
 
   @include laptop {
-    height: 97%;
+    height: calc(100vh - 12rem);
   }
 }
 
