@@ -80,7 +80,6 @@ loginButton.addEventListener("click", (event) => {
     })
     .then((data) => {
       if (data) {
-        console.log(data);
         localStorage.setItem("cookies", JSON.stringify(data.cookies));
         student = data.student;
         getStudentProfile();
@@ -192,6 +191,7 @@ function getDoughnutChart() {
       ],
     },
     options: {
+      maintainAspectRatio: false,
       plugins: {
         legend: {
           onClick: null,
@@ -251,6 +251,7 @@ function getLineChart() {
       ],
     },
     options: {
+      maintainAspectRatio: false,
       plugins: {
         legend: {
           onClick: null,

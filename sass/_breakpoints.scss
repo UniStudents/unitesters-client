@@ -41,3 +41,9 @@ $breakpoints: (
     @content;
   }
 }
+
+@mixin laptop {
+  @media (min-width: map-get($breakpoints, "xl")) and (max-height: 900px) {
+    @content;
+  }
+}

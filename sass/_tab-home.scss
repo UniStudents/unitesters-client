@@ -6,18 +6,27 @@
   &__lineChart {
     padding: 0.4rem;
     margin: 1.6rem 0;
-    max-height: 20rem;
+    height: 20rem;
+
+    @include laptop {
+      height: calc((100vh - 30rem) / 2);
+    }
   }
 
   &__doughnutChart {
     padding: 1rem;
     margin-top: 1.6rem;
-    max-height: 40rem;
+    height: 38rem;
+
+    @include laptop {
+      height: calc((100vh - 30rem) / 2);
+    }
   }
 
   @include xl {
     display: var(--display) !important;
     padding: 0 1.6rem;
+    max-width: 60rem;
   }
 }
 
@@ -47,14 +56,6 @@
       margin-top: 0.2rem;
     }
   }
-}
-
-#lineChart {
-  max-height: 18rem;
-}
-
-#doughnutChart {
-  max-height: 38rem;
 }
 
 .student-scores {

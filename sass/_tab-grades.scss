@@ -4,8 +4,13 @@
 
   @include xl {
     display: var(--display) !important;
-    height: 78rem;
+    height: 76rem;
     overflow: auto;
+    max-width: 60rem;
+  }
+
+  @include laptop {
+    height: 97%;
   }
 }
 
@@ -34,7 +39,7 @@
 
   &:last-child {
     .course:last-child {
-      margin-bottom: 1.5rem;
+      margin-bottom: 0.8rem;
     }
   }
 }
