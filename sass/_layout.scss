@@ -98,7 +98,11 @@
   }
 
   @include laptop {
-    padding: 1.2rem 0;
+    padding: 1.7rem 0;
+  }
+
+  @include laptop--xs {
+    padding: 1.4rem 0;
   }
 }
 

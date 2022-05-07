@@ -11,6 +11,10 @@
     @include laptop {
       height: calc((100vh - 30rem) / 2);
     }
+
+    @include laptop--xs {
+      height: calc(100vh - 44rem);
+    }
   }
 
   &__doughnutChart {
@@ -20,6 +24,12 @@
 
     @include laptop {
       height: calc((100vh - 30rem) / 2);
+    }
+
+    @include laptop--xs {
+      height: 23.15rem;
+      width: 37.05rem;
+      margin-top: 0;
     }
   }
 
@@ -58,10 +68,25 @@
   }
 }
 
+.scores_chart_wrapper {
+  @include laptop--xs {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 1.2rem;
+    align-items: center;
+    height: 23rem;
+  }
+}
+
 .student-scores {
   width: 100%;
   display: flex;
   justify-content: space-between;
+
+  @include laptop--xs {
+    flex-direction: column;
+    gap: 1.2rem;
+  }
 }
 
 .student-score {
@@ -74,6 +99,10 @@
   gap: 0.6rem;
   word-wrap: break-word;
   width: 30%;
+
+  @include laptop--xs {
+    width: 100%;
+  }
 
   &__number {
     font-size: 2rem;
