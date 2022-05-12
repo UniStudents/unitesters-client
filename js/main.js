@@ -46,6 +46,10 @@ loginButton.addEventListener("click", (event) => {
   }
   btnText.classList.add("hidden");
   loader.classList.remove("hidden");
+  getStudentData(university, username, password);
+});
+
+function getStudentData(university, username, password) {
   const cookies = JSON.parse(localStorage.getItem("cookies"));
   fetch(`${BASE_URL}${university}`, {
     method: "POST",
@@ -82,16 +86,45 @@ loginButton.addEventListener("click", (event) => {
       if (data) {
         localStorage.setItem("cookies", JSON.stringify(data.cookies));
         student = data.student;
-        getStudentProfile();
-        getLineChart();
+        renderStudentProfile();
+        renderStudentGrades();
+        tabsContainer.classList.remove("hidden");
         window.scrollTo({ top: 0, behavior: "smooth" });
         profileSection.classList.add("ready");
         document.querySelector(".student-grades").classList.add("ready");
       }
     });
-});
+}
 
-function getStudentGrades() {
+function renderStudentProfile() {
+  const info = student.info;
+  const grades = student.grades;
+  studentWelcome.innerHTML += `
+        <span class="student-heading__message">Συνδέθηκες ως</span>
+        <span class="student-heading__name">${info.firstName} ${info.lastName}</span>
+    `;
+  studentScores.innerHTML += `
+        <div class="student-scores">
+            <div class="student-score">
+            <p class="student-score__number">${grades.totalPassedCourses}</p>
+            <p class="student-score__description">Περασμένα Μαθήματα</p>
+            </div>
+            <div class="student-score">
+            <p class="student-score__number">${grades.totalAverageGrade}</p>
+            <p class="student-score__description">Μέσος Όρος</p>
+            </div>
+            <div class="student-score">
+            <p class="student-score__number">${grades.totalEcts}</p>
+            <p class="student-score__description">ECTS</p>
+            </div>
+        </div>
+    `;
+  getLineChart();
+  getDoughnutChart();
+  profileSection.classList.remove("hidden");
+}
+
+function renderStudentGrades() {
   const grades = student.grades;
   for (let i = 0; i < grades.semesters.length; i++) {
     let html = "";
@@ -128,35 +161,6 @@ function getStudentGrades() {
   }
 }
 
-function getStudentProfile() {
-  const info = student.info;
-  const grades = student.grades;
-  studentWelcome.innerHTML += `
-        <span class="student-heading__message">Συνδέθηκες ως</span>
-        <span class="student-heading__name">${info.firstName} ${info.lastName}</span>
-    `;
-  studentScores.innerHTML += `
-        <div class="student-scores">
-            <div class="student-score">
-            <p class="student-score__number">${grades.totalPassedCourses}</p>
-            <p class="student-score__description">Περασμένα Μαθήματα</p>
-            </div>
-            <div class="student-score">
-            <p class="student-score__number">${grades.totalAverageGrade}</p>
-            <p class="student-score__description">Μέσος Όρος</p>
-            </div>
-            <div class="student-score">
-            <p class="student-score__number">${grades.totalEcts}</p>
-            <p class="student-score__description">ECTS</p>
-            </div>
-        </div>
-    `;
-  getDoughnutChart();
-  getStudentGrades();
-  profileSection.classList.remove("hidden");
-  tabsContainer.classList.remove("hidden");
-}
-
 function getDoughnutChart() {
   const dataset = [0, 0, 0];
   dataset[0] = Number(student.grades.totalPassedCourses);
@@ -177,7 +181,7 @@ function getDoughnutChart() {
   return new Chart(doughnutChart, {
     type: "doughnut",
     data: {
-      labels: ["Πέρασες", "Κόπηκες", "Δεν έχεις δώσει"],
+      labels: ["Περασμένα", "Κομμένα", "Χωρίς Βαθμό"],
       datasets: [
         {
           backgroundColor: [
@@ -321,6 +325,5 @@ function updateLineChart() {
 
   lineChart.data.datasets[0].data = grades;
   lineChart.data.labels = semesters;
-
   lineChart.update();
 }
