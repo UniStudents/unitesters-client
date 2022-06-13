@@ -1,0 +1,123 @@
+.student-profile {
+  padding: 1.3rem;
+  width: 100%;
+  max-width: 50rem;
+
+  &__lineChart {
+    padding: 0.4rem;
+    margin: 1.6rem 0;
+    height: 20rem;
+
+    @include laptop {
+      height: calc((100vh - 30rem) / 2);
+    }
+
+    @include laptop--xs {
+      height: calc(100vh - 44rem);
+    }
+  }
+
+  &__doughnutChart {
+    padding: 1rem;
+    margin-top: 1.6rem;
+    height: 38rem;
+
+    @include laptop {
+      height: calc((100vh - 30rem) / 2);
+    }
+
+    @include laptop--xs {
+      height: 23.15rem;
+      width: 37.05rem;
+      margin-top: 0;
+    }
+  }
+
+  @include xl {
+    display: var(--display) !important;
+    padding: 0 1.6rem;
+    max-width: 60rem;
+  }
+}
+
+.student-heading,
+.student-profile__lineChart,
+.student-profile__doughnutChart {
+  background-color: #fff;
+  border-radius: var(--border-radius-main);
+  box-shadow: 0 0 8px 0 rgba(50, 50, 50, 0.2);
+}
+
+.student-heading {
+  padding: 1rem;
+
+  &__message,
+  &__name {
+    display: block;
+    font-weight: 500;
+  }
+
+  &__name {
+    font-size: 2rem;
+    color: var(--ion-color-primary);
+
+    @include xl {
+      font-size: 2.4rem;
+      margin-top: 0.2rem;
+    }
+  }
+}
+
+.scores_chart_wrapper {
+  @include laptop--xs {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 1.2rem;
+    align-items: center;
+    height: 23rem;
+  }
+}
+
+.student-scores {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+
+  @include laptop--xs {
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+}
+
+.student-score {
+  padding: 1rem;
+  background-color: #fff;
+  border-radius: var(--border-radius-main);
+  box-shadow: 0 0 8px 0 rgba(50, 50, 50, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  word-wrap: break-word;
+  width: 30%;
+
+  @include laptop--xs {
+    width: 100%;
+  }
+
+  &__number {
+    font-size: 2rem;
+
+    @include xl {
+      font-size: 2.2rem;
+    }
+  }
+
+  &__description {
+    font-size: 1.1rem;
+    color: #333;
+
+    @include xl {
+      font-size: 1.4rem;
+    }
+  }
+}

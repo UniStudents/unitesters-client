@@ -1,0 +1,85 @@
+.student-grades {
+  width: 100%;
+  max-width: 50rem;
+
+  @include xl {
+    display: var(--display) !important;
+    height: 76rem;
+    overflow: auto;
+    max-width: 60rem;
+  }
+
+  @include laptop {
+    height: calc(100vh - 12rem);
+  }
+}
+
+.grades-container {
+  line-height: 1.6;
+  background-color: #f8f8fb;
+  padding: 1.6rem 1.3rem;
+  transition: all 0.5s;
+
+  @include xl {
+    padding: 0 1.6rem;
+  }
+}
+
+.semester {
+  font-size: 1.7rem;
+  margin-bottom: 1.2rem;
+}
+
+.courses {
+  list-style: none;
+
+  &:not(:last-child) {
+    margin-bottom: 4rem;
+  }
+
+  &:last-child {
+    .course:last-child {
+      margin-bottom: 0.8rem;
+    }
+  }
+}
+
+.course {
+  background-color: #fff;
+  padding: 1.2rem 1rem;
+  box-shadow: 0 0 8px 0 rgba(50, 50, 50, 0.2);
+  border-radius: var(--border-radius-main);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &:not(:last-child) {
+    margin-bottom: 2.4rem;
+  }
+}
+
+.course-info {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  &__code,
+  &__type {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #777;
+  }
+
+  &__name {
+    font-size: 1.5rem;
+    font-weight: 500;
+  }
+}
+
+.course-grade {
+  line-height: 1.6;
+  padding-left: 1rem;
+  color: var(--ion-color-primary);
+  font-size: 3rem;
+  font-weight: 500;
+}
