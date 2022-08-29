@@ -1,5 +1,6 @@
 const loginButton = document.querySelector("#loginButton");
 const BASE_URL = "https://unistudents-cb.herokuapp.com/api/student/";
+const BASE_URL_ELEARNING = "http://unistudents-uat.herokuapp.com/api/elearning/";
 const form = document.querySelector(".form-section");
 const btnText = document.querySelector(".btn--text");
 const loader = document.querySelector(".loading-animation");
@@ -19,6 +20,7 @@ const tabGrades = document.querySelector("#tab-grades");
 const error408 = document.querySelector("#error-408");
 const error500 = document.querySelector("#error-500");
 let student;
+let courses;
 
 tabHome.addEventListener("click", function () {
   tabHome.classList.add("tab--active");
@@ -39,6 +41,7 @@ loginButton.addEventListener("click", (event) => {
   const university = document.querySelector("#universities").value;
   const username = document.querySelector("#username").value;
   const password = document.querySelector("#password").value;
+  const platform = document.querySelector("#platform").value;
   emptyMessage.classList.add("hidden");
   if (university === "" || username === "" || password === "") {
     emptyMessage.classList.remove("hidden");
@@ -46,8 +49,60 @@ loginButton.addEventListener("click", (event) => {
   }
   btnText.classList.add("hidden");
   loader.classList.remove("hidden");
-  getStudentData(university, username, password);
+  if (platform === "student") {
+    getStudentData(university, username, password);
+  } else if (platform === "elearning") {
+    getElearningData(university, username, password);
+  }
 });
+
+function getElearningData(university, username, password) {
+  const cookies = JSON.parse(localStorage.getItem("cookies"));
+  fetch(`${BASE_URL_ELEARNING}${university}`,  {
+    method: "POST",
+    body: JSON.stringify({
+      username,
+      password,
+      cookies,
+    }),
+    headers: { "Content-type": "application/json; charset=UTF-8" },
+  })
+    .then((response) => {
+      loader.classList.add("hidden");
+      btnText.classList.remove("hidden");
+      const pass = document.querySelector("#password");
+      pass.classList.remove("form-group__input--error");
+      if (response.status == 200) {
+        form.classList.add("hidden");
+        return response.json();
+      } else if (response.status == 401) {
+        pass.value = "";
+        pass.classList.add("form-group__input--error");
+        document.querySelector("label[for=password]").style.color = "#f03e3e";
+        document
+            .querySelector("#username")
+            .classList.add("form-group__input--error");
+        document.querySelector("label[for=username]").style.color = "#f03e3e";
+      } else if (response.status == 408) {
+        error408.classList.remove("hidden");
+      } else if (response.status == 500) {
+        error500.classList.remove("hidden");
+      }
+    })
+    .then((data) => {
+      if (data) {
+        localStorage.setItem("cookies", JSON.stringify(data.cookies));
+        courses = data.courses;
+        console.log(courses);
+        // renderStudentProfile();
+        // renderStudentGrades();
+        tabsContainer.classList.remove("hidden");
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        profileSection.classList.add("ready");
+        // document.querySelector(".student-grades").classList.add("ready");
+      }
+    });
+}
 
 function getStudentData(university, username, password) {
   const cookies = JSON.parse(localStorage.getItem("cookies"));
