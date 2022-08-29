@@ -1,6 +1,6 @@
 const loginButton = document.querySelector("#loginButton");
 const BASE_URL = "https://unistudents-cb.herokuapp.com/api/student/";
-const BASE_URL_ELEARNING = "http://unistudents-uat.herokuapp.com/api/elearning/";
+const BASE_URL_ELEARNING = "https://unistudents-uat.herokuapp.com/api/elearning/";
 const form = document.querySelector(".form-section");
 const btnText = document.querySelector(".btn--text");
 const loader = document.querySelector(".loading-animation");
