@@ -1,5 +1,5 @@
 const loginButton = document.querySelector("#loginButton");
-const BASE_URL = "https://unistudents-cb.herokuapp.com/api/student/";
+const BASE_URL = "https://unistudents-prod-2.herokuapp.com/api/student/";
 const BASE_URL_ELEARNING = "https://unistudents-uat.herokuapp.com/api/elearning/";
 const form = document.querySelector(".form-section");
 const btnText = document.querySelector(".btn--text");
