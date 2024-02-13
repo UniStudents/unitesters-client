@@ -194,7 +194,7 @@ body {
 }
 
 .brand-container__logo {
-  width: 5rem;
+  width: 25rem;
 }
 
 .brand-container__name {
@@ -365,11 +365,12 @@ body {
 }
 
 .form__disclaimer {
-  margin-top: 2.4rem;
-  font-size: 1.2rem;
+  font-style: italic;
+  font-size: 0.9rem;
+  text-align: center;
+  margin-top: 1rem;
   word-spacing: 2px;
   line-height: 1.6;
-  text-align: justify;
 }
 
 .form__error {
@@ -440,7 +441,7 @@ body {
 .footer {
   margin-top: auto;
   padding: 3.2rem 0.2rem;
-  background-color: var(--ion-color-tertiary-shade);
+  background-image: linear-gradient(#6c63ff,#6c63ff);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -461,7 +462,7 @@ body {
 }
 
 .footer .brand-container .brand-container__logo {
-  width: 8rem;
+  width: 20rem;
 }
 
 .footer .brand-container .brand-container__name {

@@ -72,10 +72,10 @@ function getElearningData(university, username, password) {
       btnText.classList.remove("hidden");
       const pass = document.querySelector("#password");
       pass.classList.remove("form-group__input--error");
-      if (response.status == 200) {
+      if (response.status === 200) {
         form.classList.add("hidden");
         return response.json();
-      } else if (response.status == 401) {
+      } else if (response.status === 401) {
         pass.value = "";
         pass.classList.add("form-group__input--error");
         document.querySelector("label[for=password]").style.color = "#f03e3e";
@@ -83,9 +83,9 @@ function getElearningData(university, username, password) {
             .querySelector("#username")
             .classList.add("form-group__input--error");
         document.querySelector("label[for=username]").style.color = "#f03e3e";
-      } else if (response.status == 408) {
+      } else if (response.status === 408) {
         error408.classList.remove("hidden");
-      } else if (response.status == 500) {
+      } else if (response.status === 500) {
         error500.classList.remove("hidden");
       }
     })
@@ -120,10 +120,10 @@ function getStudentData(university, username, password) {
       btnText.classList.remove("hidden");
       const pass = document.querySelector("#password");
       pass.classList.remove("form-group__input--error");
-      if (response.status == 200) {
+      if (response.status === 200) {
         form.classList.add("hidden");
         return response.json();
-      } else if (response.status == 401) {
+      } else if (response.status === 401) {
         pass.value = "";
         pass.classList.add("form-group__input--error");
         document.querySelector("label[for=password]").style.color = "#f03e3e";
@@ -131,14 +131,15 @@ function getStudentData(university, username, password) {
           .querySelector("#username")
           .classList.add("form-group__input--error");
         document.querySelector("label[for=username]").style.color = "#f03e3e";
-      } else if (response.status == 408) {
+      } else if (response.status === 408) {
         error408.classList.remove("hidden");
-      } else if (response.status == 500) {
+      } else if (response.status === 500) {
         error500.classList.remove("hidden");
       }
     })
     .then((data) => {
       if (data) {
+        console.log(data);
         localStorage.setItem("cookies", JSON.stringify(data.cookies));
         student = data.student;
         renderStudentProfile();
@@ -153,7 +154,7 @@ function getStudentData(university, username, password) {
 
 function renderStudentProfile() {
   const info = student.info;
-  const grades = student.grades;
+  const progress = student.progress;
   studentWelcome.innerHTML += `
         <span class="student-heading__message">Συνδέθηκες ως</span>
         <span class="student-heading__name">${info.firstName} ${info.lastName}</span>
@@ -161,15 +162,15 @@ function renderStudentProfile() {
   studentScores.innerHTML += `
         <div class="student-scores">
             <div class="student-score">
-            <p class="student-score__number">${grades.totalPassedCourses}</p>
+            <p class="student-score__number">${progress.passedCourses}</p>
             <p class="student-score__description">Περασμένα Μαθήματα</p>
             </div>
             <div class="student-score">
-            <p class="student-score__number">${grades.totalAverageGrade}</p>
+            <p class="student-score__number">${progress.averageGrade}</p>
             <p class="student-score__description">Μέσος Όρος</p>
             </div>
             <div class="student-score">
-            <p class="student-score__number">${grades.totalEcts}</p>
+            <p class="student-score__number">${progress.ects}</p>
             <p class="student-score__description">ECTS</p>
             </div>
         </div>
@@ -180,16 +181,24 @@ function renderStudentProfile() {
 }
 
 function renderStudentGrades() {
-  const grades = student.grades;
-  for (let i = 0; i < grades.semesters.length; i++) {
+  const progress = student.progress;
+  for (let i = 0; i < progress.semesters.length; i++) {
     let html = "";
-    const semester = grades.semesters[i];
+    const semester = progress.semesters[i];
     html += `
             <h3 class="semester">Εξάμηνο ${semester.id}</h3>
             <ul class="courses">
         `;
     for (let j = 0; j < semester.courses.length; j++) {
       const course = semester.courses[j];
+
+      let courseColor = '';
+      let courseGrade = '-';
+      if (course.latestExamGrade) {
+        courseColor = !course.latestExamGrade.isPassed ? 'red' : '';
+        courseGrade = course.latestExamGrade.grade;
+      }
+
       html += `
               <li class="course">
                   <div class="course-info">
@@ -198,14 +207,12 @@ function renderStudentGrades() {
                   ${course.name}
                   </p>
                   <p class="course-info__type">${
-                    course.type === "" || course.examPeriod === "-"
+                    course.type === "" || !course.latestExamGrade
                       ? "-"
-                      : `${course.type} | ${course.examPeriod}`
+                      : `${course.type} | ${course.latestExamGrade.displayPeriod}`
                   }</p>
                   </div>
-                  <p class="course-grade ${
-                    course.grade < 5 && course.grade >= 0 ? "red" : ""
-                  }">${course.grade}</p>
+                  <p class="course-grade ${courseColor}">${courseGrade}</p>
               </li>
             `;
     }
@@ -218,16 +225,13 @@ function renderStudentGrades() {
 
 function getDoughnutChart() {
   const dataset = [0, 0, 0];
-  dataset[0] = Number(student.grades.totalPassedCourses);
+  dataset[0] = Number(student.progress.passedCourses);
 
-  for (const semester of student.grades.semesters) {
+  for (const semester of student.progress.semesters) {
     for (const course of semester.courses) {
-      if (course.grade === "") {
-        continue;
-      }
-      if (course.grade === "-") {
+      if (!course.latestExamGrade) {
         dataset[2]++;
-      } else if (Number(course.grade) < 5) {
+      } else if (Number(course.latestExamGrade.grade) < 5) {
         dataset[1]++;
       }
     }
@@ -264,16 +268,14 @@ function getLineChart() {
   const grades = [];
   const semesters = [];
 
-  for (let i = 0; i < student.grades.semesters.length; i++) {
-    if (student.grades.semesters[i].gradeAverage === "-") {
+  for (let i = 0; i < student.progress.semesters.length; i++) {
+    if (student.progress.semesters[i].averageGrade === "-") {
       continue;
     }
-    semesters.push(student.grades.semesters[i].id);
+    semesters.push(student.progress.semesters[i].id);
     grades.push(
       Number(
-        student.grades.semesters[i].gradeAverage
-          .replace("-", "")
-          .replace(",", ".")
+        student.progress.semesters[i].averageGrade
       )
     );
   }
@@ -341,16 +343,16 @@ function getLineChart() {
 
 function updateDoughnutChart() {
   const dataset = [0, 0, 0];
-  dataset[0] = Number(student.grades.totalPassedCourses);
+  dataset[0] = Number(student.progress.passedCourses);
 
-  for (const semester of student.grades.semesters) {
+  for (const semester of student.progress.semesters) {
     for (const course of semester.courses) {
-      if (course.grade === "") {
+      if (course.latestExamGrade.grade === "") {
         continue;
       }
-      if (course.grade === "-") {
+      if (course.latestExamGrade.grade === "-") {
         dataset[2]++;
-      } else if (Number(course.grade) < 5) {
+      } else if (Number(course.latestExamGrade.grade) < 5) {
         dataset[1]++;
       }
     }
@@ -364,14 +366,14 @@ function updateLineChart() {
   const grades = [];
   const semesters = [];
 
-  for (let i = 0; i < student.grades.semesters.length; i++) {
-    if (student.grades.semesters[i].gradeAverage === "-") {
+  for (let i = 0; i < student.progress.semesters.length; i++) {
+    if (student.progress.semesters[i].averageGrade === "-") {
       continue;
     }
-    semesters.push(student.grades.semesters[i].id);
+    semesters.push(student.progress.semesters[i].id);
     grades.push(
       Number(
-        student.grades.semesters[i].gradeAverage
+        student.progress.semesters[i].averageGrade
           .replace("-", "")
           .replace(",", ".")
       )
