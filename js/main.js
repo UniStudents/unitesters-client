@@ -202,7 +202,7 @@ function renderStudentGrades() {
       html += `
               <li class="course">
                   <div class="course-info">
-                  <p class="course-info__code">${course.id}</p>
+                  <p class="course-info__code">${course.displayCode}</p>
                   <p class="course-info__name">
                   ${course.name}
                   </p>
