@@ -1,5 +1,5 @@
 const loginButton = document.querySelector("#loginButton");
-const BASE_URL = "https://scrape-farm-1.unistudents.gr/api/student/";
+const BASE_URL = "https://scrape-farm-dev.unistudents.app/api/student/";
 const BASE_URL_ELEARNING = "https://scrape-farm-1.unistudents.gr/api/elearning/";
 const form = document.querySelector(".form-section");
 const btnText = document.querySelector(".btn--text");
